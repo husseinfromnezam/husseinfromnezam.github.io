@@ -4,222 +4,158 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Hussein Abou-Eita, AI automation and analytics specialist. AI phone receptionists (with real, redacted call recordings), quoting apps, analytics pipelines and an ERP from scratch, each with the numbers.">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0C0A10">
 <meta property="og:title" content="Hussein Abou-Eita">
 <meta property="og:description" content="Automations that answer the phone, price the job, and report the number.">
 <title>Hussein Abou-Eita</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap">
 <style>
   :root {
-    --bg: #F4F6FA; --bg-2: #EBEFF5; --surface: #FFFFFF; --glass: rgba(255,255,255,.72);
-    --ink: #0E1420; --ink-2: #47526A; --ink-3: #7A849A; --rule: #D9DFEA; --rule-soft: #E8ECF3;
-    --amber: #B7791F; --amber-ink: #8E5C12; --amber-soft: rgba(183,121,31,.14);
-    --ice: #1F6FEB; --ice-ink: #164FB0; --ice-soft: rgba(31,111,235,.12);
-    --chip: #EEF2F8; --shadow: 0 1px 0 rgba(14,20,32,.05), 0 24px 60px -30px rgba(14,20,32,.35);
-    --aurora-a: rgba(183,121,31,.22); --aurora-b: rgba(31,111,235,.18); --aurora-c: rgba(120,80,220,.12);
-    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-    --serif: "Newsreader", Georgia, "Times New Roman", serif;
-    --mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0A0E17; --bg-2: #0E1320; --surface: #121827; --glass: rgba(18,24,39,.72);
-      --ink: #EEF2F7; --ink-2: #A9B3C4; --ink-3: #6E7A8F; --rule: #1F2838; --rule-soft: #171F2D;
-      --amber: #F2B54B; --amber-ink: #FFD27A; --amber-soft: rgba(242,181,75,.14);
-      --ice: #7CC4FF; --ice-ink: #A9DBFF; --ice-soft: rgba(124,196,255,.12);
-      --chip: #161E2E; --shadow: 0 1px 0 rgba(0,0,0,.5), 0 30px 70px -30px rgba(0,0,0,.9);
-      --aurora-a: rgba(242,181,75,.20); --aurora-b: rgba(124,196,255,.16); --aurora-c: rgba(140,100,255,.14);
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0A0E17; --bg-2: #0E1320; --surface: #121827; --glass: rgba(18,24,39,.72);
-    --ink: #EEF2F7; --ink-2: #A9B3C4; --ink-3: #6E7A8F; --rule: #1F2838; --rule-soft: #171F2D;
-    --amber: #F2B54B; --amber-ink: #FFD27A; --amber-soft: rgba(242,181,75,.14);
-    --ice: #7CC4FF; --ice-ink: #A9DBFF; --ice-soft: rgba(124,196,255,.12);
-    --chip: #161E2E; --shadow: 0 1px 0 rgba(0,0,0,.5), 0 30px 70px -30px rgba(0,0,0,.9);
-    --aurora-a: rgba(242,181,75,.20); --aurora-b: rgba(124,196,255,.16); --aurora-c: rgba(140,100,255,.14);
+    --bg: #0C0A10; --bg-2: #141019; --panel: #17131F; --ink: #F5EFE6; --ink-2: #B9B0A3; --ink-3: #756D63;
+    --gold: #F0B429; --gold-2: #FFD469; --purple: #B44CFF; --green: #35E38F; --yellow: #FFD829; --teal: #2FB7B0;
+    --rule: #2A2433; --rule-2: #3A3246;
+    --cond: "Barlow Condensed", "Arial Narrow", Impact, sans-serif; --sans: "Barlow", "Helvetica Neue", Arial, sans-serif; --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.55; font-optical-sizing: auto; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; background: var(--bg); }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -2; background: radial-gradient(1200px 600px at 20% -10%, rgba(240,180,41,.10), transparent 60%), radial-gradient(900px 500px at 90% 20%, rgba(180,76,255,.10), transparent 60%), var(--bg); }
+  body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .5; background-image: repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 3px), repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 3px); mix-blend-mode: overlay; }
   a { color: inherit; text-decoration: none; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; border-radius: 4px; }
-  .wrap { max-width: 1160px; margin: 0 auto; padding-inline: 22px; min-width: 0; }
-  h1, h2, h3, h4 { font-family: var(--display); font-optical-sizing: auto; letter-spacing: -0.015em; text-wrap: balance; margin: 0; }
-  p { margin: 0; }
-  .mono { font-family: var(--mono); font-size: 13px; }
-  .eyebrow { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 22px; min-width: 0; }
+  .mono { font-family: var(--mono); }
+  .lbl { font-family: var(--mono); font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
   .num { font-variant-numeric: tabular-nums; }
 
-  /* reveal motion: everything is visible at rest, motion is a small settle */
-  .rv { transform: translateY(14px); transition: transform .9s cubic-bezier(.2,.7,.2,1); }
-  .rv.in { transform: none; }
-  .rv-d1 { transition-delay: .08s } .rv-d2 { transition-delay: .16s } .rv-d3 { transition-delay: .24s }
-
   /* masthead */
-  .masthead { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 14px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); background: color-mix(in srgb, var(--bg) 78%, transparent); border-bottom: 1px solid var(--rule-soft); }
-  .brand { font-family: var(--display); font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-  .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px var(--amber-soft); animation: breathe 3s ease-in-out infinite; }
-  @keyframes breathe { 0%,100% { box-shadow: 0 0 0 3px var(--amber-soft) } 50% { box-shadow: 0 0 0 8px transparent } }
-  nav { display: flex; gap: 20px; flex-wrap: wrap; }
-  nav a { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-2); padding-block: 4px; position: relative; }
-  nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 1px; background: var(--amber); transition: right .3s ease; }
-  nav a:hover::after { right: 0; }
-  nav a:hover { color: var(--ink); }
+  .top { display: flex; justify-content: space-between; align-items: center; padding-block: 18px; border-bottom: 1px solid var(--rule); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: rgba(12,10,16,.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .cart { display: flex; align-items: center; gap: 12px; }
+  .cart svg { width: 54px; height: 30px; display: block; }
+  .cart .nm { font-family: var(--cond); font-weight: 800; font-size: 20px; letter-spacing: .02em; text-transform: uppercase; }
+  .cart .nm small { display: block; font-family: var(--mono); font-weight: 400; font-size: 10.5px; letter-spacing: .18em; color: var(--ink-3); }
+  nav { display: flex; gap: 22px; }
+  nav a { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); position: relative; padding-block: 6px; }
+  nav a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: var(--gold); transition: width .3s; }
+  nav a:hover::after { width: 100%; }
 
   /* hero */
-  .hero { position: relative; padding-block: 84px 64px; isolation: isolate; }
-  .aurora { position: absolute; inset: -120px -40vw 0 -40vw; z-index: -1; pointer-events: none; filter: blur(60px); opacity: .9; }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 48px; align-items: end; }
-  .hero h1 { font-size: clamp(2.6rem, 6vw, 5.4rem); font-weight: 800; line-height: .98; letter-spacing: -0.035em; max-width: 13ch; }
-  .hero h1 .l { display: block; }
-  .hero h1 em { font-style: normal; color: var(--amber); }
-  .hero h1 em.ice { color: var(--ice); }
-  .lede { font-size: 21px; line-height: 1.5; color: var(--ink-2); max-width: 46ch; margin-top: 26px; }
+  .hero { position: relative; padding-block: 96px 72px; isolation: isolate; }
+  #speed { position: absolute; inset: 0 -22px; z-index: -1; pointer-events: none; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+  .hero h1 { font-family: var(--cond); font-weight: 900; text-transform: uppercase; font-size: clamp(3.6rem, 10vw, 9.4rem); line-height: .88; letter-spacing: -0.01em; margin: 0; }
+  .hero h1 .w { display: block; position: relative; padding-left: 18px; transform: translateX(-24px); opacity: 1; animation: slide .8s cubic-bezier(.2,.8,.2,1) forwards; }
+  .hero h1 .w::before { content: ""; position: absolute; left: 0; top: 12%; bottom: 12%; width: 6px; border-radius: 3px; background: var(--c); box-shadow: 0 0 18px var(--c); }
+  .hero h1 .w:nth-child(1) { --c: var(--purple); animation-delay: .05s; }
+  .hero h1 .w:nth-child(2) { --c: var(--green); animation-delay: .2s; }
+  .hero h1 .w:nth-child(3) { --c: var(--yellow); animation-delay: .35s; }
+  @keyframes slide { to { transform: none; } }
+  .sub { margin-top: 26px; font-size: 19px; color: var(--ink-2); max-width: 44ch; }
   .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
-  .btn { font-family: var(--mono); font-size: 13px; padding: 12px 18px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink); transition: transform .2s ease, box-shadow .2s ease, background .2s, border-color .2s; }
-  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--ink-3); }
-  .btn.primary { background: var(--amber); border-color: var(--amber); color: #14110A; font-weight: 600; }
-  .btn.primary:hover { background: var(--amber-ink); border-color: var(--amber-ink); }
-  .stats { display: grid; gap: 14px; }
-  .stat { position: relative; background: var(--glass); border: 1px solid var(--rule); border-radius: 16px; padding: 18px 20px 16px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow); overflow: hidden; }
-  .stat b { font-family: var(--display); font-weight: 800; font-size: 46px; line-height: 1; letter-spacing: -0.04em; color: var(--amber-ink); display: block; }
-  .stat b small { font-size: 22px; letter-spacing: 0; color: var(--ink-3); font-weight: 600; margin-left: 4px; }
-  .stat span { display: block; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); line-height: 1.45; margin-top: 8px; }
-  .stat .bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--amber), var(--ice)); transition: width 1.4s cubic-bezier(.2,.7,.2,1); }
-  .stat.in .bar { width: 100%; }
+  .btn { font-family: var(--mono); font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 20px; border: 1px solid var(--rule-2); border-radius: 4px; color: var(--ink); background: transparent; transition: transform .2s, background .2s, border-color .2s, box-shadow .2s; }
+  .btn:hover { transform: translateY(-2px); border-color: var(--gold); box-shadow: 0 0 0 4px rgba(240,180,41,.15); }
+  .btn.gold { background: var(--gold); border-color: var(--gold); color: #1A1305; font-weight: 700; }
+  .btn.gold:hover { background: var(--gold-2); border-color: var(--gold-2); }
+
+  /* timing board */
+  .board { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(0,0,0,.9); }
+  .board .hd { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+  .board .hd .live { display: inline-flex; align-items: center; gap: 8px; color: var(--green); }
+  .board .hd .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); animation: blink 1.4s infinite; }
+  @keyframes blink { 50% { opacity: .25; } }
+  .row { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 14px 16px; border-bottom: 1px solid var(--rule); transform: translateX(30px); animation: slide .7s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(.35s + var(--i) * .12s); }
+  .row:last-child { border-bottom: 0; }
+  .row .p { font-family: var(--cond); font-weight: 800; font-size: 20px; color: var(--ink-3); }
+  .row .k { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+  .row .v { font-family: var(--cond); font-weight: 900; font-size: 38px; line-height: 1; letter-spacing: -0.01em; color: var(--c, var(--ink)); text-shadow: 0 0 24px color-mix(in srgb, var(--c, transparent) 45%, transparent); white-space: nowrap; }
+  .row .v small { font-size: 18px; margin-left: 3px; opacity: .8; }
 
   /* sections */
-  section { padding-block: 72px; border-top: 1px solid var(--rule-soft); scroll-margin-top: 64px; }
-  .sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 20px 48px; align-items: end; margin-bottom: 44px; }
-  .sec-head .idx { font-family: var(--mono); font-size: 12px; color: var(--amber-ink); letter-spacing: .14em; margin-bottom: 10px; }
-  .sec-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
-  .sec-head p { color: var(--ink-2); font-size: 17.5px; max-width: 60ch; }
+  section { padding-block: 84px; border-top: 1px solid var(--rule); scroll-margin-top: 70px; }
+  .h2 { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 34px; }
+  .h2 h2 { font-family: var(--cond); font-weight: 900; text-transform: uppercase; font-size: clamp(2.4rem, 5vw, 4rem); line-height: .95; margin: 0; letter-spacing: 0; }
+  .h2 .lbl { color: var(--gold); }
+  .h2 p { flex-basis: 100%; color: var(--ink-2); font-size: 17px; max-width: 60ch; margin: 6px 0 0; }
 
-  /* builds */
-  .build { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px 52px; padding-block: 44px; border-top: 1px solid var(--rule-soft); }
-  .build:first-of-type { border-top: 0; padding-top: 0; }
-  .kicker { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
-  .kicker .tag { font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); }
-  .kicker .tag.role { color: var(--ice-ink); background: var(--ice-soft); padding: 3px 8px; border-radius: 999px; }
-  .build h3 { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
-  .story { margin-top: 16px; display: grid; gap: 14px; max-width: 62ch; }
-  .story b { font-family: var(--mono); font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--amber-ink); display: block; margin-bottom: 3px; }
-  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; }
-  .flow span { font-family: var(--mono); font-size: 12px; padding: 6px 10px; background: var(--chip); border: 1px solid var(--rule); border-radius: 8px; color: var(--ink-2); animation: signal 5.6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * .55s); }
-  .flow i { font-style: normal; color: var(--ink-3); font-family: var(--mono); font-size: 12px; }
-  @keyframes signal { 0%, 14%, 100% { box-shadow: 0 0 0 0 transparent; border-color: var(--rule); color: var(--ink-2); } 6% { box-shadow: 0 0 0 4px var(--amber-soft); border-color: var(--amber); color: var(--ink); } }
-  .stackline { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-top: 16px; }
+  /* radio */
+  .radio { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .ch { min-width: 0; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 20px 22px 22px; display: grid; gap: 16px; position: relative; overflow: hidden; }
+  .ch::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c); box-shadow: 0 0 20px var(--c); }
+  .ch .meta { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .ch .meta b { color: var(--c); font-weight: 600; }
+  .player { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px; align-items: center; }
+  .play { width: 64px; height: 64px; border-radius: 50%; border: 0; background: var(--gold); color: #1A1305; display: grid; place-items: center; cursor: pointer; transition: transform .2s, background .2s; }
+  .play:hover { transform: scale(1.06); background: var(--gold-2); }
+  .play.on { animation: ring 1.4s ease-out infinite; }
+  @keyframes ring { 0% { box-shadow: 0 0 0 0 rgba(240,180,41,.45); } 100% { box-shadow: 0 0 0 22px rgba(240,180,41,0); } }
+  .play svg { width: 24px; height: 24px; fill: currentColor; }
+  .wave { min-width: 0; }
+  .wave canvas { width: 100%; height: 72px; display: block; cursor: pointer; }
+  .tl { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 6px; }
+  .sub-line { min-height: 92px; display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 12px; align-items: start; padding-top: 14px; border-top: 1px solid var(--rule); }
+  .sub-line .who { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); padding-top: 6px; }
+  .sub-line .who.vera { color: var(--c); }
+  .sub-line .txt { font-family: var(--cond); font-weight: 700; font-size: 26px; line-height: 1.12; text-transform: none; letter-spacing: 0; color: var(--ink); transition: opacity .25s; }
+  .sub-line .txt.fade { opacity: .0; }
+  .sub-line .txt .redact { font-family: var(--mono); font-weight: 400; font-size: 13px; letter-spacing: .04em; color: var(--ink-3); background: rgba(255,255,255,.04); border: 1px dashed var(--rule-2); border-radius: 3px; padding: 1px 6px; vertical-align: middle; }
+  .ch .foot { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); display: flex; gap: 14px; flex-wrap: wrap; }
+  .ch .foot span::before { content: "■ "; color: var(--c); }
 
-  .ledger { min-width: 0; align-self: start; background: var(--glass); border: 1px solid var(--rule); border-radius: 18px; padding: 20px 22px 10px; box-shadow: var(--shadow); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: transform .35s ease, box-shadow .35s ease; }
-  .ledger:hover { transform: translateY(-3px); }
-  .ledger .lh { font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); display: flex; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
-  .ledger .lh b { color: var(--amber-ink); font-weight: 600; }
-  .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding-block: 12px; border-bottom: 1px solid var(--rule-soft); align-items: baseline; }
-  .row:last-of-type { border-bottom: 0; }
-  .row .k { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
-  .row .v { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.03em; white-space: nowrap; text-align: right; }
-  .row .v .from { font-family: var(--mono); font-weight: 400; font-size: 12.5px; color: var(--ink-3); margin-right: 8px; text-decoration: line-through; }
-  .row .v .to { color: var(--amber-ink); }
-  .row .track { grid-column: 1 / -1; height: 3px; background: var(--rule-soft); border-radius: 2px; position: relative; overflow: visible; }
-  .row .track .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 2px; background: linear-gradient(90deg, var(--ice), var(--amber)); transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
-  .ledger.in .row .track .fill { width: var(--w, 100%); }
-  .row .track .tick { position: absolute; top: -3px; width: 2px; height: 9px; background: var(--ink-3); left: var(--t, 0%); border-radius: 1px; }
-  .ledger .note { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); padding-block: 12px 8px; }
+  /* grid */
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; perspective: 1200px; }
+  .tile { min-width: 0; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 22px 22px 20px; position: relative; overflow: hidden; transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .3s; transform-style: preserve-3d; }
+  .tile:hover { border-color: var(--c); }
+  .tile::after { content: ""; position: absolute; inset: auto -40% -60% -40%; height: 80%; background: radial-gradient(closest-side, color-mix(in srgb, var(--c) 22%, transparent), transparent); opacity: 0; transition: opacity .4s; pointer-events: none; }
+  .tile:hover::after { opacity: 1; }
+  .tile .lbl { color: var(--ink-3); }
+  .tile .big { font-family: var(--cond); font-weight: 900; font-size: clamp(3.2rem, 5.2vw, 4.6rem); line-height: .95; letter-spacing: -0.01em; color: var(--c); margin: 14px 0 8px; text-shadow: 0 0 30px color-mix(in srgb, var(--c) 40%, transparent); }
+  .tile .big small { font-size: 55%; opacity: .85; }
+  .tile h3 { font-family: var(--cond); font-weight: 700; text-transform: uppercase; font-size: 20px; letter-spacing: .02em; margin: 0 0 6px; }
+  .tile p { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.45; }
 
-  .also { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 40px; }
-  .also article { padding: 20px 20px 18px; border: 1px solid var(--rule); border-radius: 16px; background: var(--surface); transition: transform .3s ease, box-shadow .3s ease, border-color .3s; min-width: 0; }
-  .also article:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--ink-3); }
-  .also h4 { font-weight: 700; font-size: 17px; margin: 0 0 6px; }
-  .also p { font-size: 15px; color: var(--ink-2); line-height: 1.45; }
-  .also .eyebrow { margin-bottom: 10px; color: var(--amber-ink); }
+  /* strings */
+  .strings { position: relative; }
+  #strings { width: 100%; height: 260px; display: block; touch-action: none; cursor: crosshair; border: 1px solid var(--rule); border-radius: 6px; background: linear-gradient(180deg, var(--panel), var(--bg-2)); }
+  .strings .cap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 12px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
 
-  /* calls */
-  .callgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
-  .call { min-width: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; padding: 20px 22px 18px; display: grid; gap: 14px; align-content: start; box-shadow: var(--shadow); }
-  .call .meta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
-  .call .meta .pill { color: var(--ice-ink); background: var(--ice-soft); border-radius: 999px; padding: 3px 9px; }
-  .player { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; align-items: center; }
-  .play { width: 52px; height: 52px; border-radius: 50%; border: 0; background: var(--amber); color: #14110A; display: grid; place-items: center; cursor: pointer; transition: transform .2s ease, background .2s; box-shadow: 0 0 0 0 var(--amber-soft); }
-  .play:hover { transform: scale(1.06); }
-  .play.on { animation: ring 1.6s ease-out infinite; }
-  @keyframes ring { 0% { box-shadow: 0 0 0 0 var(--amber-soft) } 100% { box-shadow: 0 0 0 16px transparent } }
-  .play svg { width: 20px; height: 20px; fill: currentColor; }
-  .wave { position: relative; height: 64px; min-width: 0; }
-  .wave canvas { width: 100%; height: 64px; display: block; border-radius: 8px; cursor: pointer; }
-  .time { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 4px; }
-  .time .masked-key { display: inline-flex; align-items: center; gap: 6px; }
-  .time .masked-key i { display: inline-block; width: 14px; height: 8px; border-radius: 2px; background: repeating-linear-gradient(135deg, var(--ink-3) 0 2px, transparent 2px 5px); opacity: .7; }
-  .turns { display: grid; gap: 6px; margin: 0; padding: 0 4px 0 0; list-style: none; max-height: 340px; overflow-y: auto; scrollbar-width: thin; }
-  .turns li { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 10px; font-size: 15px; line-height: 1.45; padding: 7px 10px; border-radius: 10px; border-left: 2px solid transparent; transition: background .3s, border-color .3s; overflow-wrap: anywhere; }
-  .turns li.on { background: var(--amber-soft); border-left-color: var(--amber); }
-  .turns b { font-family: var(--mono); font-weight: 600; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding-top: 4px; }
-  .turns li.vera b { color: var(--ice-ink); }
-  .turns .redact { font-family: var(--mono); font-size: 12px; color: var(--ink-3); background: var(--chip); border: 1px dashed var(--rule); border-radius: 4px; padding: 0 5px; }
-  .call .out { margin: 0; padding-top: 12px; border-top: 1px solid var(--rule-soft); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 5px 12px; font-family: var(--mono); font-size: 12px; }
-  .call .out dt { color: var(--ink-3); }
-  .call .out dd { margin: 0; color: var(--ink); }
-  .call .out dd.good { color: var(--amber-ink); }
+  /* contact */
+  .contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: end; }
+  .contact h2 { font-family: var(--cond); font-weight: 900; text-transform: uppercase; font-size: clamp(3rem, 8vw, 7rem); line-height: .9; margin: 0; }
+  .contact h2 em { font-style: normal; color: var(--gold); }
+  .contact .lines { display: grid; gap: 10px; font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+  .contact .lines a { color: var(--ink); border-bottom: 1px solid var(--rule-2); }
+  .contact .lines a:hover { border-bottom-color: var(--gold); }
+  footer { padding-block: 28px 44px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
 
-  /* method */
-  .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; position: relative; }
-  .steps::before { content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 0; background: linear-gradient(90deg, var(--amber), var(--ice)); transition: width 1.8s cubic-bezier(.2,.7,.2,1); }
-  .steps.in::before { width: 100%; }
-  .step { border-top: 2px solid var(--rule); padding-top: 16px; min-width: 0; }
-  .step .n { font-family: var(--mono); font-size: 12px; color: var(--amber-ink); letter-spacing: 0.12em; }
-  .step h3 { font-size: 21px; font-weight: 800; margin-top: 6px; letter-spacing: -0.02em; }
-  .step p { font-size: 15.5px; color: var(--ink-2); margin-top: 8px; line-height: 1.5; }
-  .step pre { margin: 14px 0 0; font-family: var(--mono); font-size: 11.5px; line-height: 1.55; color: var(--ink-2); background: var(--chip); border: 1px solid var(--rule-soft); border-radius: 10px; padding: 12px 14px; overflow-x: auto; white-space: pre; }
-  .step pre b { color: var(--amber-ink); font-weight: 600; }
-
-  /* stack */
-  .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px 40px; }
-  .stack h3 { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); font-weight: 600; margin-bottom: 12px; }
-  .stack ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-  .stack li { font-family: var(--mono); font-size: 12.5px; padding: 7px 11px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); transition: transform .2s ease, border-color .2s, box-shadow .2s; }
-  .stack li:hover { transform: translateY(-2px); border-color: var(--amber); box-shadow: 0 0 0 4px var(--amber-soft); }
-
-  /* about */
-  .about { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 32px 52px; }
-  .about p { font-size: 18.5px; max-width: 60ch; }
-  .about p + p { margin-top: 14px; }
-  .facts { display: grid; border-top: 1px solid var(--ink); align-self: start; }
-  .facts div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding-block: 12px; border-bottom: 1px solid var(--rule); font-size: 15px; }
-  .facts b { font-family: var(--mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); padding-top: 3px; }
-  .facts a { color: var(--ice-ink); border-bottom: 1px solid var(--ice-soft); }
-  .facts a:hover { border-bottom-color: var(--ice); }
-  footer { padding-block: 30px 46px; border-top: 1px solid var(--rule-soft); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  footer .mono { color: var(--ink-3); }
+  /* reveal */
+  .rv { transform: translateY(18px); transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+  .rv.in { transform: none; }
 
   @media (max-width: 900px) {
-    .hero { padding-block: 56px 44px; }
-    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
-    .sec-head { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-bottom: 30px; }
-    .build { grid-template-columns: minmax(0, 1fr); gap: 22px; padding-block: 34px; }
-    .callgrid { grid-template-columns: minmax(0, 1fr); }
-    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .about { grid-template-columns: minmax(0, 1fr); }
-    section { padding-block: 56px; }
+    .hero { padding-block: 60px 48px; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .radio { grid-template-columns: minmax(0, 1fr); }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .contact { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+    section { padding-block: 64px; }
   }
-  @media (max-width: 540px) {
-    body { font-size: 16px; }
-    .steps { grid-template-columns: minmax(0, 1fr); }
-    .masthead { padding-block: 12px; }
-    nav { gap: 12px; }
-    nav a { font-size: 11px; letter-spacing: .08em; }
-    nav a.hide-m { display: none; }
-    .stat b { font-size: 38px; }
-    .row .v { font-size: 20px; }
-    .facts div { grid-template-columns: 92px minmax(0, 1fr); }
-    .turns { max-height: 300px; }
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    .top { flex-wrap: wrap; gap: 6px 16px; padding-block: 12px 10px; }
+    .cart .nm { font-size: 18px; white-space: nowrap; }
+    .cart .nm small { display: none; }
+    nav { width: 100%; gap: 18px; } nav a { font-size: 11px; letter-spacing: .12em; padding-block: 2px; }
+    .row .v { font-size: 30px; }
+    .sub-line .txt { font-size: 22px; }
+    #strings { height: 200px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
-    .rv { transform: none; }
-    .stat .bar, .steps::before { width: 100% !important; }
-    .ledger .row .track .fill { width: var(--w, 100%) !important; }
+    .hero h1 .w, .row, .rv { transform: none !important; }
   }
 </style>
 
@@ -227,288 +163,90 @@
 </head>
 <body>
 <div class="wrap">
-  <header class="masthead">
-    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Hussein Abou-Eita</a>
-    <nav aria-label="Sections">
-      <a href="#work">Work</a><a href="#calls">Listen</a><a class="hide-m" href="#method">Method</a><a class="hide-m" href="#stack">Stack</a><a href="#about">About</a>
-    </nav>
+  <header class="top">
+    <a class="cart" href="#top" aria-label="Hussein Abou-Eita, home">
+      <svg viewBox="0 0 54 30" aria-hidden="true"><rect x="1.5" y="1.5" width="51" height="21" rx="10.5" fill="none" stroke="#F0B429" stroke-width="2"/><line x1="12" y1="27.5" x2="42" y2="27.5" stroke="#F0B429" stroke-width="2.5" stroke-linecap="round"/><text x="27" y="16.6" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="13" fill="#F5EFE6" letter-spacing="1">HAE</text></svg>
+      <span class="nm">Hussein Abou-Eita<small>AI automation · Cairo</small></span>
+    </a>
+    <nav aria-label="Sections"><a href="#radio">Radio</a><a href="#grid">Grid</a><a href="#contact">Contact</a></nav>
   </header>
 
   <section class="hero" id="top" style="border-top:0">
-    <canvas class="aurora" id="aurora" aria-hidden="true"></canvas>
+    <canvas id="speed" aria-hidden="true"></canvas>
     <div class="hero-grid">
       <div>
-        <p class="eyebrow rv">Cairo · working Toronto and US hours · remote</p>
-        <h1 class="rv rv-d1" style="margin-top:18px"><span class="l">Automations that</span><span class="l"><em>answer the phone,</em></span><span class="l">price the job, and</span><span class="l"><em class="ice">report the number.</em></span></h1>
-        <p class="lede rv rv-d2">I come into a business, watch how the work actually gets done, pull the data, and build the automation that moves the number that matters. Then I put a dashboard next to it so everyone can see whether it worked.</p>
-        <div class="cta rv rv-d3">
-          <a class="btn primary" href="mailto:aboueitabe@gmail.com">Email me</a>
-          <a class="btn" href="https://www.linkedin.com/in/hussein-abou-eita/">LinkedIn</a>
-          <a class="btn" href="#calls">Hear the receptionist</a>
-        </div>
+        <p class="lbl">Cairo · Toronto hours · AI automation</p>
+        <h1 style="margin-top:18px"><span class="w">Answer.</span><span class="w">Price.</span><span class="w">Report.</span></h1>
+        <p class="sub">AI receptionists, quoting apps and data pipelines for small businesses. Every one of them measured.</p>
+        <div class="cta"><a class="btn gold" href="#radio">Hear the receptionist</a><a class="btn" href="mailto:aboueitabe@gmail.com">Email me</a></div>
       </div>
-      <div class="stats" aria-label="Headline results">
-        <div class="stat rv"><b class="num" data-count="3655" data-format="int">3,655</b><span>inbound calls answered by an AI receptionist I built for a Toronto property manager, 35% of them after hours</span><i class="bar"></i></div>
-        <div class="stat rv rv-d1"><b class="num" data-count="11" data-suffix="×">11<small>×</small></b><span>Google impressions in four months for a rental-listings platform (1,397 to 15,632 per 28 days), with the pipelines and dashboard to prove it</span><i class="bar"></i></div>
-        <div class="stat rv rv-d2"><b class="num" data-count="70" data-suffix="%">70<small>%</small></b><span>faster order fulfilment at a manufacturing platform after an ERP built from scratch replaced its spreadsheets</span><i class="bar"></i></div>
+      <div class="board" aria-label="Headline numbers">
+        <div class="hd"><span>Timing · 2025 to 2026</span><span class="live"><i></i>Live systems</span></div>
+        <div class="row" style="--i:0; --c: var(--purple)"><span class="p">P1</span><span class="k">Calls answered by an AI receptionist</span><span class="v num" data-count="3655">3,655</span></div>
+        <div class="row" style="--i:1; --c: var(--green)"><span class="p">P2</span><span class="k">Google impressions, four months</span><span class="v num" data-count="11" data-suffix="×">11<small>×</small></span></div>
+        <div class="row" style="--i:2; --c: var(--yellow)"><span class="p">P3</span><span class="k">Order fulfilment time, manufacturing</span><span class="v num" data-count="70" data-prefix="−" data-suffix="%">−70<small>%</small></span></div>
+        <div class="row" style="--i:3"><span class="p">P4</span><span class="k">Businesses automated, five months</span><span class="v num" data-count="9">9</span></div>
       </div>
     </div>
   </section>
 
-  <section id="work">
-    <div class="sec-head">
-      <div><div class="idx">01 · Work</div><h2 class="rv">Selected builds</h2></div>
-      <p class="rv rv-d1">Seven systems that run in production today. Each one started with a baseline and ends with a ledger of what changed. Client names are withheld; every number is from the client's own data.</p>
-    </div>
-
-    <article class="build">
-      <div class="rv">
-        <div class="kicker"><span class="tag">Property management · Toronto</span><span class="tag role">2026 · built and run</span></div>
-        <h3>AI phone receptionists on two lines, tuned against a score on every call</h3>
-        <div class="story">
-          <p><b>Problem</b>Calls went unanswered, all of them after hours and some during the day. The ones that were answered often never reached the CRM, so leads died in a voicemail box.</p>
-          <p><b>Build</b>Two voice agents on Retell AI with n8n behind them. Each call is answered in seconds; the agent qualifies the caller, takes the property and contact details, and posts a structured summary to Slack, tagging the right person. Every call is then pulled, scored by Gemini against a written rubric, stored in Supabase and shown on a dashboard the owner opens. That loop drove 57 agent versions.</p>
-        </div>
-        <div class="flow" aria-label="System flow"><span style="--i:0">Inbound call</span><i>→</i><span style="--i:1">Retell agent</span><i>→</i><span style="--i:2">n8n</span><i>→</i><span style="--i:3">Slack + CRM</span><i>→</i><span style="--i:4">Gemini QA</span><i>→</i><span style="--i:5">Supabase</span><i>→</i><span style="--i:6">Dashboard</span></div>
-        <p class="stackline">Retell AI · n8n · Slack · Gemini · Supabase · Vercel · SIP diagnostics</p>
-      </div>
-      <div class="ledger rv rv-d1" aria-label="Results ledger">
-        <div class="lh"><b>Ledger</b><span>May to Sep 2026</span></div>
-        <div class="row"><span class="k">Inbound calls answered</span><span class="v num"><span class="to">3,655</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">After-hours answer rate</span><span class="v num"><span class="from">0%</span><span class="to">100%</span></span><span class="track"><span class="fill"></span><span class="tick" style="--t:0%"></span></span></div>
-        <div class="row"><span class="k">Calls arriving after hours</span><span class="v num"><span class="to">35%</span></span><span class="track"><span class="fill" style="--w:35%"></span></span></div>
-        <div class="row"><span class="k">Engaged calls with contact captured</span><span class="v num"><span class="to">82%</span></span><span class="track"><span class="fill" style="--w:82%"></span></span></div>
-        <div class="row"><span class="k">Share of the firm's leads via the agent</span><span class="v num"><span class="to">24%</span></span><span class="track"><span class="fill" style="--w:24%"></span></span></div>
-        <div class="row"><span class="k">Distinct callers · brokerages (86 days)</span><span class="v num"><span class="to">634 · 125</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Agent versions shipped</span><span class="v num"><span class="to">57</span></span><span class="track"><span class="fill"></span></span></div>
-        <p class="note">Also traced a caller-ID fault to the client's phone system from SIP headers, not to the agent.</p>
-      </div>
-    </article>
-
-    <article class="build">
-      <div class="rv">
-        <div class="kicker"><span class="tag">Rental-listings platform · Toronto</span><span class="tag role">May to Sep 2026 · retainer</span></div>
-        <h3>SEO and AI-search program with daily analytics pipelines and a live dashboard</h3>
-        <div class="story">
-          <p><b>Problem</b>A Next.js listings site that search engines and AI crawlers could barely read: crawlers blocked with 403s, no structured data, no llms.txt, and nobody measuring any of it.</p>
-          <p><b>Build</b>Thirteen pull requests merged in the client's codebase (robots and llms.txt, FAQPage and Dataset schema, owner-first pages, a monthly rent report). Daily Search Console and GA4 syncs on GitHub Actions feed a static dashboard on Vercel. A drift monitor captures eleven pages and four crawler views every day and opens a GitHub issue on regression. WAF rules cut bot traffic by three quarters.</p>
-        </div>
-        <div class="flow" aria-label="System flow"><span style="--i:0">GitHub Actions</span><i>→</i><span style="--i:1">Search Console + GA4 APIs</span><i>→</i><span style="--i:2">JSON</span><i>→</i><span style="--i:3">Dashboard</span><i>·</i><span style="--i:4">Drift monitor</span><i>→</i><span style="--i:5">GitHub issue</span></div>
-        <p class="stackline">Next.js · GitHub Actions · Python · Search Console API · GA4 API · Cloudflare · Wikidata</p>
-      </div>
-      <div class="ledger rv rv-d1" aria-label="Results ledger">
-        <div class="lh"><b>Ledger</b><span>first 28 days vs last 28</span></div>
-        <div class="row"><span class="k">Google impressions / 28 days</span><span class="v num"><span class="from">1,397</span><span class="to">15,632</span></span><span class="track"><span class="fill"></span><span class="tick" style="--t:9%"></span></span></div>
-        <div class="row"><span class="k">Clicks / 28 days</span><span class="v num"><span class="from">43</span><span class="to">274</span></span><span class="track"><span class="fill"></span><span class="tick" style="--t:16%"></span></span></div>
-        <div class="row"><span class="k">Pages surfacing in Google</span><span class="v num"><span class="from">1,103</span><span class="to">2,601</span></span><span class="track"><span class="fill"></span><span class="tick" style="--t:42%"></span></span></div>
-        <div class="row"><span class="k">AI-search readiness score</span><span class="v num"><span class="from">21</span><span class="to">62 / 100</span></span><span class="track"><span class="fill" style="--w:62%"></span><span class="tick" style="--t:21%"></span></span></div>
-        <div class="row"><span class="k">AI crawler access</span><span class="v num"><span class="from">403</span><span class="to">200 OK</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Bot traffic / week</span><span class="v num"><span class="from">61k</span><span class="to">13k</span></span><span class="track"><span class="fill" style="--w:21%"></span><span class="tick" style="--t:100%"></span></span></div>
-        <div class="row"><span class="k">PRs merged, all inside SLA</span><span class="v num"><span class="to">13</span></span><span class="track"><span class="fill"></span></span></div>
-      </div>
-    </article>
-
-    <article class="build">
-      <div class="rv">
-        <div class="kicker"><span class="tag">Manufacturing platform · Egypt</span><span class="tag role">Jun 2025 to Jan 2026 · in-house</span></div>
-        <h3>An ERP from scratch, and instant quoting from a CAD file</h3>
-        <div class="story">
-          <p><b>Problem</b>An on-demand B2B manufacturing platform routing parts to partner factories, run on spreadsheets. Quotes were built by hand in Word with a Gantt chart pasted from Excel, two hours of the founder's day. Purchase orders, supplier payments and the CRM lived in files that disagreed with each other.</p>
-          <p><b>Build</b>Spent the first weeks watching every process, then built an ERP specific to the business: orders tracked from quote to factory to delivery, supplier balances, a CRM automated in ClickUp and integrated into the ERP. Quoting became a pipeline: Python and CadQuery read the STEP file (bounding box, volume, surface area, bosses, holes), n8n assembles the priced PDF, and a Digifabster integration fed a 7,000-point dataset for an in-house pricing model. An AI layer on top lets leadership ask the business questions in plain language.</p>
-        </div>
-        <div class="flow" aria-label="System flow"><span style="--i:0">STEP file</span><i>→</i><span style="--i:1">CadQuery parser</span><i>→</i><span style="--i:2">Pricing model</span><i>→</i><span style="--i:3">n8n</span><i>→</i><span style="--i:4">Priced PDF quote</span><i>→</i><span style="--i:5">ERP order</span></div>
-        <p class="stackline">Python · CadQuery · n8n · ClickUp · Digifabster · Google Sheets</p>
-      </div>
-      <div class="ledger rv rv-d1" aria-label="Results ledger">
-        <div class="lh"><b>Ledger</b><span>seven months</span></div>
-        <div class="row"><span class="k">Order fulfilment time</span><span class="v num"><span class="to">−70%</span></span><span class="track"><span class="fill" style="--w:30%"></span><span class="tick" style="--t:100%"></span></span></div>
-        <div class="row"><span class="k">Founder's daily quoting time</span><span class="v num"><span class="from">2 h</span><span class="to">0</span></span><span class="track"><span class="fill" style="--w:2%"></span><span class="tick" style="--t:100%"></span></span></div>
-        <div class="row"><span class="k">Pricing dataset</span><span class="v num"><span class="to">7,000 points</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">CRM accounts · leads</span><span class="v num"><span class="to">200 · 470</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Manufacturing processes quoted (CNC to 3D print)</span><span class="v num"><span class="to">6</span></span><span class="track"><span class="fill"></span></span></div>
-      </div>
-    </article>
-
-    <article class="build">
-      <div class="rv">
-        <div class="kicker"><span class="tag">Property-turnover contractor · Toronto</span><span class="tag role">Aug to Sep 2026 · app</span></div>
-        <h3>Quote Writer: a plain-words job description becomes a priced quote</h3>
-        <div class="story">
-          <p><b>Problem</b>A twelve-person multi-trade contractor writing every quote by hand, in a format that changed with whoever wrote it.</p>
-          <p><b>Build</b>An installable web app: type or paste the job in plain words, Gemini extracts the line items against the company's price book, the quote comes back priced and editable in seconds, exported to Word and PDF, searchable and duplicable. Shipped only once a guardrail corpus of real jobs passed 9 of 9.</p>
-        </div>
-        <div class="flow" aria-label="System flow"><span style="--i:0">Job in plain words</span><i>→</i><span style="--i:1">Gemini extraction</span><i>→</i><span style="--i:2">Price book</span><i>→</i><span style="--i:3">Editable quote</span><i>→</i><span style="--i:4">Word / PDF</span></div>
-        <p class="stackline">Next.js · Supabase · Gemini · Vercel · PWA</p>
-      </div>
-      <div class="ledger rv rv-d1" aria-label="Results ledger">
-        <div class="lh"><b>Ledger</b><span>build</span></div>
-        <div class="row"><span class="k">Signed to deployed</span><span class="v num"><span class="to">8 days</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Guardrail corpus</span><span class="v num"><span class="to">9 / 9</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Time to a priced quote</span><span class="v num"><span class="from">hours</span><span class="to">seconds</span></span><span class="track"><span class="fill" style="--w:3%"></span><span class="tick" style="--t:100%"></span></span></div>
-      </div>
-    </article>
-
-    <article class="build">
-      <div class="rv">
-        <div class="kicker"><span class="tag">Plumbing contractor · Toronto</span><span class="tag role">Sep 2026 · app</span></div>
-        <h3>Job Hub: work-order emails become jobs, invoices and revenue per client</h3>
-        <div class="story">
-          <p><b>Problem</b>Work orders arrive as emails from several property-management companies. Nothing tracked which were done, invoiced, or paid, or which management company was actually worth the time.</p>
-          <p><b>Build</b>Gemini parses each work-order email into a job; the app writes the invoice and shows money per management company. The parser was evaluated on real emails before launch: 25 of 25 assertions across six cases. Sold eight days after an inbound referral.</p>
-        </div>
-        <div class="flow" aria-label="System flow"><span style="--i:0">Work-order email</span><i>→</i><span style="--i:1">Gemini parser</span><i>→</i><span style="--i:2">Job list</span><i>→</i><span style="--i:3">Invoice</span><i>→</i><span style="--i:4">Revenue by client</span></div>
-        <p class="stackline">Next.js · Supabase · Gemini · Gmail API · Vercel</p>
-      </div>
-      <div class="ledger rv rv-d1" aria-label="Results ledger">
-        <div class="lh"><b>Ledger</b><span>at handover</span></div>
-        <div class="row"><span class="k">Parser evaluation</span><span class="v num"><span class="to">25 / 25</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Real jobs ingested</span><span class="v num"><span class="to">26</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Referral to signed</span><span class="v num"><span class="to">8 days</span></span><span class="track"><span class="fill"></span></span></div>
-      </div>
-    </article>
-
-    <article class="build">
-      <div class="rv">
-        <div class="kicker"><span class="tag">Short-term rentals · Puerto Vallarta</span><span class="tag role">2026 · built and operated</span></div>
-        <h3>Direct-booking site with a bilingual AI concierge and a guest CRM that finally had emails in it</h3>
-        <div class="story">
-          <p><b>Problem</b>Two rental properties paying platform commissions on every repeat guest, with 218 past guests on file and eight usable email addresses.</p>
-          <p><b>Build</b>A branded direct-booking site with a bilingual AI concierge, guest CRM, drip campaigns, city guide and admin panel. A sweep of 3,934 synced messages recovered 117 guest emails. A tap-to-send WhatsApp winter campaign went to 181 past guests with phones.</p>
-        </div>
-        <div class="flow" aria-label="System flow"><span style="--i:0">Booking platform messages</span><i>→</i><span style="--i:1">Sync + regex sweep</span><i>→</i><span style="--i:2">Guest CRM</span><i>→</i><span style="--i:3">Drip + WhatsApp campaigns</span><i>·</i><span style="--i:4">AI concierge (EN/ES)</span></div>
-        <p class="stackline">Next.js · Supabase · Stripe · WhatsApp · Vercel</p>
-      </div>
-      <div class="ledger rv rv-d1" aria-label="Results ledger">
-        <div class="lh"><b>Ledger</b><span>Aug 2026</span></div>
-        <div class="row"><span class="k">Guests with a real email</span><span class="v num"><span class="from">8</span><span class="to">107 of 218</span></span><span class="track"><span class="fill" style="--w:49%"></span><span class="tick" style="--t:4%"></span></span></div>
-        <div class="row"><span class="k">Emails recovered from messages</span><span class="v num"><span class="to">117 / 3,934</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Win-back campaign reach</span><span class="v num"><span class="to">181 guests</span></span><span class="track"><span class="fill" style="--w:83%"></span></span></div>
-      </div>
-    </article>
-
-    <article class="build">
-      <div class="rv">
-        <div class="kicker"><span class="tag">My own consultancy</span><span class="tag role">2026 · internal tooling</span></div>
-        <h3>An AI-native CRM and ops hub, built to run the practice itself</h3>
-        <div class="story">
-          <p><b>Problem</b>Outbound sales to Toronto trades and property managers from Cairo, with leads in Apollo, calls in a dialer, receipts in Gmail and nothing joined up.</p>
-          <p><b>Build</b>Customers, deals, projects, tasks, invoices and conversations in one app. Nightly Apollo sync into a two-tier lead model, dialer webhooks that retire dead numbers automatically, contact enrichment, a Gmail-to-Gemini receipt pipeline, an AI "chief of staff" morning briefing, a REST surface for agents, and a dial-window guard so nobody calls Ontario outside legal hours.</p>
-        </div>
-        <div class="flow" aria-label="System flow"><span style="--i:0">Apollo</span><i>→</i><span style="--i:1">Lead inbox</span><i>→</i><span style="--i:2">Dialer webhooks</span><i>→</i><span style="--i:3">Deals + tasks</span><i>·</i><span style="--i:4">Gmail</span><i>→</i><span style="--i:5">Gemini</span><i>→</i><span style="--i:6">Receipts</span></div>
-        <p class="stackline">Next.js 16 · TypeScript · Supabase · Drizzle · Gemini 2.5 · Apollo API · Stripe</p>
-      </div>
-      <div class="ledger rv rv-d1" aria-label="Results ledger">
-        <div class="lh"><b>Ledger</b><span>Sep 2026</span></div>
-        <div class="row"><span class="k">Leads under management</span><span class="v num"><span class="to">751</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Seats</span><span class="v num"><span class="to">5</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Webhook replay against production</span><span class="v num"><span class="to">4 / 4</span></span><span class="track"><span class="fill"></span></span></div>
-        <div class="row"><span class="k">Clients signed on it, five months</span><span class="v num"><span class="to">9</span></span><span class="track"><span class="fill"></span></span></div>
-      </div>
-    </article>
-
-    <div class="also">
-      <article class="rv"><p class="eyebrow">Analytics</p><h4>Search-demand study for a 95-suite rental development</h4><p>143 phrases across Canada and Toronto, live SERPs, into a 15-slide deck the developer used to choose a name and positioning.</p></article>
-      <article class="rv rv-d1"><p class="eyebrow">Sales tooling</p><h4>Cold-call coach</h4><p>An AI grader that scores every sales call against a twelve-file rubric: openers, objections, closes, benchmarks. Ranks the call, names the fix.</p></article>
-      <article class="rv rv-d2"><p class="eyebrow">Operating system</p><h4>How every engagement is run</h4><p>Kickoff templates, an append-only status log, a session handoff, and a verification ledger for every client message, enforced by shell hooks in Claude Code.</p></article>
-      <article class="rv rv-d3"><p class="eyebrow">For fun</p><h4>The Arcade</h4><p>A single-file retro-arcade microsite that teaches the cold-call playbook level by level. Because training decks don't get read.</p></article>
-    </div>
-  </section>
-
-  <section id="calls">
-    <div class="sec-head">
-      <div><div class="idx">02 · Listen</div><h2 class="rv">Two calls, as they happened</h2></div>
-      <p class="rv rv-d1">Real recordings from the brokerage line, July 2026, picked from a review of fifty. Names, phone numbers, emails, addresses and the brokerage name are bleeped in the audio and masked in the text. Press play; the transcript follows the voice.</p>
-    </div>
-    <div class="callgrid">
-      <div class="call rv" data-call="gibbs">
-        <div class="meta"><span>Tue 28 Jul 2026 · 16:25 ET · 87 s</span><span class="pill">lead captured</span><span class="pill">contact read back</span><span class="pill">agent closed the call</span></div>
+  <section id="radio">
+    <div class="h2"><span class="lbl">01 · Team radio</span><h2 class="rv">Two real calls</h2><p class="rv">Vera, an AI receptionist I built for a Toronto brokerage, on the line with two strangers. Names, numbers, emails and addresses are bleeped. Press play and read along.</p></div>
+    <div class="radio">
+      <div class="ch rv" data-call="gibbs" style="--c: var(--purple)">
+        <div class="meta"><span><b>CH 1</b> · Tue 28 Jul · 87 s</span><span>lead captured · read back · clean close</span></div>
         <div class="player">
           <button class="play" aria-label="Play call one"><svg viewBox="0 0 24 24" class="ic-play"><path d="M8 5v14l11-7z"/></svg><svg viewBox="0 0 24 24" class="ic-pause" hidden><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
-          <div class="wave"><canvas aria-label="Waveform, click to seek"></canvas><div class="time"><span class="cur num">0:00</span><span class="masked-key"><i></i>bleeped</span><span class="dur num">1:27</span></div></div>
+          <div class="wave"><canvas aria-label="Waveform, click to seek"></canvas><div class="tl"><span class="cur num">0:00</span><span>▮▮ bleeped</span><span class="dur num">1:27</span></div></div>
         </div>
         <audio preload="metadata" src="audio/gibbs.m4a"></audio>
-        <ul class="turns"></ul>
-        <dl class="out">
-          <dt>caller type</dt><dd>prospective tenant, no agent (the firm keeps both sides)</dd>
-          <dt>reason</dt><dd>price, utilities, virtual showing on 1 or 2 Aug</dd>
-          <dt>captured</dt><dd class="good">callback number · email · property</dd>
-          <dt>judge</dt><dd class="good">areas for improvement: none</dd>
-        </dl>
+        <div class="sub-line"><span class="who">Radio</span><div class="txt">Press play.</div></div>
+        <div class="foot"><span>prospective tenant, no agent</span><span>phone + email captured</span><span>judge: nothing to improve</span></div>
       </div>
-      <div class="call rv rv-d1" data-call="donmills">
-        <div class="meta"><span>Sun 26 Jul 2026 · 16:52 ET · 94 s</span><span class="pill">lead captured</span><span class="pill">routed to a named agent</span><span class="pill">misheard email caught</span></div>
+      <div class="ch rv" data-call="donmills" style="--c: var(--green)">
+        <div class="meta"><span><b>CH 2</b> · Sun 26 Jul · 94 s</span><span>lead captured · misheard email caught</span></div>
         <div class="player">
           <button class="play" aria-label="Play call two"><svg viewBox="0 0 24 24" class="ic-play"><path d="M8 5v14l11-7z"/></svg><svg viewBox="0 0 24 24" class="ic-pause" hidden><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
-          <div class="wave"><canvas aria-label="Waveform, click to seek"></canvas><div class="time"><span class="cur num">0:00</span><span class="masked-key"><i></i>bleeped</span><span class="dur num">1:34</span></div></div>
+          <div class="wave"><canvas aria-label="Waveform, click to seek"></canvas><div class="tl"><span class="cur num">0:00</span><span>▮▮ bleeped</span><span class="dur num">1:34</span></div></div>
         </div>
         <audio preload="metadata" src="audio/donmills.m4a"></audio>
-        <ul class="turns"></ul>
-        <dl class="out">
-          <dt>caller type</dt><dd>prospective tenant, no agent</dd>
-          <dt>routing</dt><dd>asked for a named agent; request captured for the team</dd>
-          <dt>captured</dt><dd class="good">full name · callback number · corrected email · property</dd>
-          <dt>note</dt><dd>the first 20 seconds have cross-talk; that class of fault is what the QA score tracks</dd>
-        </dl>
+        <div class="sub-line"><span class="who">Radio</span><div class="txt">Press play.</div></div>
+        <div class="foot"><span>asked for a named agent</span><span>name, phone, corrected email</span><span>cross-talk in the first 20 s</span></div>
       </div>
     </div>
   </section>
 
-  <section id="method">
-    <div class="sec-head">
-      <div><div class="idx">03 · Method</div><h2 class="rv">How I work</h2></div>
-      <p class="rv rv-d1">Business value first, then the process, then the data, and a number agreed before a line of code. A tool nobody adopts is worth nothing, so the people doing the work are in the room from day one.</p>
-    </div>
-    <div class="steps rv">
-      <div class="step"><div class="n">01</div><h3>Watch, then ask</h3><p>A week or two beside the team. Two questions to everyone: what wastes most of your time, and what should you be doing instead? Leadership gets the same questions separately; the answers rarely match, and both count.</p><pre>rule #1
-copy-paste is not part of anyone's workflow</pre></div>
-      <div class="step"><div class="n">02</div><h3>Pull the data</h3><p>CRM exports, call logs, inbox volumes, the spreadsheets themselves. There are always hints. The receptionist project began when the call log showed a third of calls arriving after hours and none answered.</p><pre>baseline-2026-05-13.json
-"captured_at": <b>"2026-05-13T15:33:18Z"</b>
-"llms_txt": 404 · "crawler": 403</pre></div>
-      <div class="step"><div class="n">03</div><h3>Cost it, rank it, agree the number</h3><p>Manual cost today against build, maintenance and API cost. The gap has to be smaller than the value. Then the owner and I agree what success looks like as a number, and what the dashboard will show.</p><pre>target      contact capture ≥ 80%
-baseline    after-hours answered 0%
-report      weekly, plain numbers</pre></div>
-      <div class="step"><div class="n">04</div><h3>Build, measure, keep the record</h3><p>Ship the highest-value item that can go live in weeks. Every automation gets its own metric and a status log that stands alone, so the next person (or the next session) knows exactly where things are.</p><pre>STATUS.md   newest entry on top
-HANDOFF.md  last write of a session
-ledger      claim · check · source · time</pre></div>
+  <section id="grid">
+    <div class="h2"><span class="lbl">02 · The grid</span><h2 class="rv">Six builds, one number each</h2><p class="rv">Client names withheld. Every figure is from the client's own data.</p></div>
+    <div class="grid">
+      <article class="tile rv" style="--c: var(--purple)"><span class="lbl">AI receptionists</span><div class="big num">3,655</div><h3>Calls answered</h3><p>Two Retell AI voice agents with n8n behind them, tuned through 57 versions against a score on every call. 24% of the firm's leads now come through them.</p></article>
+      <article class="tile rv" style="--c: var(--green)"><span class="lbl">SEO + AI search</span><div class="big num">11<small>×</small></div><h3>Impressions</h3><p>Daily Search Console and GA4 pipelines, a drift monitor, 13 merged PRs and a live dashboard for a rental-listings platform.</p></article>
+      <article class="tile rv" style="--c: var(--yellow)"><span class="lbl">Manufacturing ERP</span><div class="big num">−70<small>%</small></div><h3>Order time</h3><p>An ERP built from scratch plus instant quoting from a CAD file: Python, CadQuery, n8n, a 7,000-point pricing dataset.</p></article>
+      <article class="tile rv" style="--c: var(--gold)"><span class="lbl">Quote Writer</span><div class="big num">8<small> days</small></div><h3>Signed to deployed</h3><p>Plain words in, a priced, editable quote out. Gemini, Supabase, Next.js. Shipped once the guardrail corpus passed 9 of 9.</p></article>
+      <article class="tile rv" style="--c: var(--teal)"><span class="lbl">Job Hub</span><div class="big num">25<small>/25</small></div><h3>Parser evals</h3><p>Work-order emails become jobs, invoices and revenue per client for a plumbing contractor. Sold eight days after a referral.</p></article>
+      <article class="tile rv" style="--c: var(--ink)"><span class="lbl">Own CRM</span><div class="big num">751</div><h3>Leads under management</h3><p>An AI-native CRM built to run my own practice: Apollo sync, dialer webhooks, Gemini receipts, a daily AI briefing.</p></article>
     </div>
   </section>
 
-  <section id="stack">
-    <div class="sec-head">
-      <div><div class="idx">04 · Stack</div><h2 class="rv">Tools</h2></div>
-      <p class="rv rv-d1">Chosen per job, not per habit. Most business automations need n8n, one LLM API and a database; the rest is discipline.</p>
-    </div>
-    <div class="stack rv">
-      <div><h3>Automation &amp; agents</h3><ul><li>n8n</li><li>Retell AI</li><li>ElevenLabs</li><li>Claude API</li><li>Claude Code</li><li>Gemini 2.5</li><li>OpenAI</li><li>Codex</li><li>MCP servers</li></ul></div>
-      <div><h3>Apps &amp; data</h3><ul><li>Next.js</li><li>TypeScript</li><li>Supabase / Postgres</li><li>Drizzle</li><li>Python</li><li>SQL</li><li>Vercel</li><li>GitHub Actions</li><li>Cloudflare</li></ul></div>
-      <div><h3>Analytics &amp; systems</h3><ul><li>GA4</li><li>Search Console API</li><li>DataForSEO</li><li>Ahrefs</li><li>Apollo</li><li>ClickUp</li><li>HubSpot</li><li>Stripe</li><li>Slack</li><li>Excel / Sheets models</li><li>CadQuery</li></ul></div>
-    </div>
+  <section id="offclock" class="strings">
+    <div class="h2"><span class="lbl">03 · Off the clock</span><h2 class="rv">Pluck a string</h2></div>
+    <canvas id="strings" aria-label="Six guitar strings you can pluck"></canvas>
+    <div class="cap"><span>Guitar most evenings</span><span>Formula 1 every race weekend</span><span>Cairo, Egypt</span></div>
   </section>
 
-  <section id="about">
-    <div class="sec-head">
-      <div><div class="idx">05 · About</div><h2 class="rv">Analyst by training, builder by trade, seller by history</h2></div>
-      <p class="rv rv-d1"></p>
-    </div>
-    <div class="about">
-      <div class="rv">
-        <p>I have a Master's in AI and Business Analytics from Vlerick and a finance degree from IE, and I passed CFA Level I on the first attempt, which is why every build here ends in a number rather than a feeling. Before automation I sold: first go-to-market hire at a sales-AI startup, growing it from one user to 1,450 while running product. I understand what the people using the tool want to be doing instead.</p>
-        <p>Based in Cairo, EU citizen, and used to Toronto and US hours. I work in English, Arabic, French and Spanish.</p>
-      </div>
-      <div class="facts rv rv-d1">
-        <div><b>Email</b><span><a href="mailto:aboueitabe@gmail.com">aboueitabe@gmail.com</a></span></div>
-        <div><b>LinkedIn</b><span><a href="https://www.linkedin.com/in/hussein-abou-eita/">linkedin.com/in/hussein-abou-eita</a></span></div>
-        <div><b>Education</b><span>MSc AI &amp; Business Analytics, Vlerick · BBA Finance, IE University · CFA Level I</span></div>
-        <div><b>Languages</b><span>English, Arabic (native) · French, Spanish (fluent)</span></div>
-        <div><b>Hours</b><span>Available on Eastern and Central US time</span></div>
+  <section id="contact">
+    <div class="contact">
+      <h2 class="rv">Let's <em>talk.</em></h2>
+      <div class="lines rv">
+        <span><a href="mailto:aboueitabe@gmail.com">aboueitabe@gmail.com</a></span>
+        <span><a href="https://www.linkedin.com/in/hussein-abou-eita/">linkedin.com/in/hussein-abou-eita</a></span>
+        <span>Available on Eastern and Central US hours</span>
+        <span>MSc AI &amp; Business Analytics · CFA Level I · EN AR FR ES</span>
       </div>
     </div>
   </section>
 
-  <footer>
-    <span class="mono">Hussein Abou-Eita · 2026</span>
-    <span class="mono">Every figure above comes from the client's own data or the deployed system.</span>
-  </footer>
+  <footer><span>Hussein Abou-Eita · 2026</span><span>Numbers from client data and deployed systems</span></footer>
 </div>
 
 <script>
@@ -517,126 +255,120 @@ ledger      claim · check · source · time</pre></div>
   var R = function(t){ return '<span class="redact">' + t + '</span>'; };
   var TURNS = {
     gibbs: [
-      ['vera',0.26,3.88,'Hi, you\'ve reached ' + R('[brokerage]') + '. This is Vera, how can I help you today?'],
-      ['caller',5.59,10.57,'Hi. I\'m calling with regards to a rental property you have at ' + R('[address]') + '.'],
-      ['vera',12.06,14.39,'Are you a realtor or looking for yourself?'],
-      ['caller',15.44,16.56,'I\'m looking for myself.'],
-      ['vera',18.04,20.41,'Are you currently working with a real estate agent?'],
-      ['caller',21.78,22.02,'No.'],
-      ['vera',23.53,27.71,'What message would you like to leave for the team about ' + R('[address]') + '?'],
-      ['caller',29.50,41.05,'Wanted to confirm the rental price per month, what utilities are included, and I would like to schedule a virtual showing August first or August second.'],
-      ['vera',42.63,48.67,'I don\'t have that specific detail, the team can clarify when they call you back. What\'s the best number to reach you?'],
-      ['caller',50.16,53.73,R('[phone number]')],
-      ['vera',55.30,61.90,'Just to confirm, your phone number is ' + R('[phone number, read back]') + '. What\'s the best email for you?'],
-      ['caller',63.48,67.89,R('[email]')],
-      ['vera',69.70,80.66,'Just to confirm, your email is ' + R('[email, spelled back]') + '. Alright, I\'ll make sure the team gets your message. Is there anything else I can help you with?'],
-      ['caller',81.72,82.44,'No. Thank you.'],
-      ['vera',84.04,86.96,'Great, we\'ll be in touch as soon as possible. Have a good one.']
+      ['vera',0.26,'Hi, you\'ve reached ' + R('brokerage') + '. This is Vera, how can I help you today?'],
+      ['caller',5.59,'Hi. I\'m calling with regards to a rental property you have at ' + R('address') + '.'],
+      ['vera',12.06,'Are you a realtor or looking for yourself?'],
+      ['caller',15.44,'I\'m looking for myself.'],
+      ['vera',18.04,'Are you currently working with a real estate agent?'],
+      ['caller',21.78,'No.'],
+      ['vera',23.53,'What message would you like to leave for the team about ' + R('address') + '?'],
+      ['caller',29.50,'Wanted to confirm the rental price per month, what utilities are included, and I would like to schedule a virtual showing August first or August second.'],
+      ['vera',42.63,'I don\'t have that specific detail, the team can clarify when they call you back. What\'s the best number to reach you?'],
+      ['caller',50.16,R('phone number')],
+      ['vera',55.30,'Just to confirm, your phone number is ' + R('read back') + '. What\'s the best email for you?'],
+      ['caller',63.48,R('email')],
+      ['vera',69.70,'Just to confirm, your email is ' + R('spelled back') + '. Alright, I\'ll make sure the team gets your message. Is there anything else I can help you with?'],
+      ['caller',81.72,'No. Thank you.'],
+      ['vera',84.04,'Great, we\'ll be in touch as soon as possible. Have a good one.']
     ],
     donmills: [
-      ['vera',0.26,4.21,'Hi, you\'ve reached ' + R('[brokerage]') + '. This is Vera, how can I help you today?'],
-      ['caller',6.15,13.71,'Hi. Can I speak to ' + R('[agent name]') + '? It\'s regarding the ' + R('[address]') + ' property.'],
-      ['vera',15.34,17.11,'What message would you like to leave?'],
-      ['vera',18.28,19.72,'Are you a realtor or looking for yourself?'],
-      ['caller',19.64,25.83,'I would like to have a showing. No, I\'m a potential renter, and I want to have a showing.'],
-      ['vera',27.34,29.71,'Are you currently working with a real estate agent?'],
-      ['caller',30.20,37.77,'For this property, no. I\'m calling directly because I\'m interested to rent a house.'],
-      ['vera',39.47,41.09,'What\'s your first and last name?'],
-      ['caller',42.59,51.68,R('[name, spelled out]')],
-      ['vera',53.37,56.07,'Is the number you\'re calling from the best number to reach you?'],
-      ['caller',57.75,58.31,'Yes. Yes.'],
-      ['vera',59.94,61.52,'What\'s the best email for you?'],
-      ['caller',61.43,65.92,R('[email]')],
-      ['vera',67.47,73.46,'Let me read that back to confirm: ' + R('[email, spelled back with one letter missing]') + '. Is that correct?'],
-      ['caller',73.81,80.20,'No, no. ' + R('[email, spelled again]') + '.'],
-      ['vera',81.69,89.40,'Let me confirm: ' + R('[email, spelled back correctly]') + '. Is there anything else I can help you with?'],
-      ['caller',91.23,91.79,'No.'],
-      ['vera',91.80,93.90,'Great, we\'ll be in touch as soon as possible. Have a good one.']
+      ['vera',0.26,'Hi, you\'ve reached ' + R('brokerage') + '. This is Vera, how can I help you today?'],
+      ['caller',6.15,'Hi. Can I speak to ' + R('agent name') + '? It\'s regarding the ' + R('address') + ' property.'],
+      ['vera',15.34,'What message would you like to leave?'],
+      ['vera',18.28,'Are you a realtor or looking for yourself?'],
+      ['caller',19.64,'I would like to have a showing. No, I\'m a potential renter, and I want to have a showing.'],
+      ['vera',27.34,'Are you currently working with a real estate agent?'],
+      ['caller',30.20,'For this property, no. I\'m calling directly because I\'m interested to rent a house.'],
+      ['vera',39.47,'What\'s your first and last name?'],
+      ['caller',42.59,R('name, spelled out')],
+      ['vera',53.37,'Is the number you\'re calling from the best number to reach you?'],
+      ['caller',57.75,'Yes. Yes.'],
+      ['vera',59.94,'What\'s the best email for you?'],
+      ['caller',61.43,R('email')],
+      ['vera',67.47,'Let me read that back to confirm: ' + R('one letter missing') + '. Is that correct?'],
+      ['caller',73.81,'No, no. ' + R('email, spelled again') + '.'],
+      ['vera',81.69,'Let me confirm: ' + R('spelled back correctly') + '. Is there anything else I can help you with?'],
+      ['caller',91.23,'No.'],
+      ['vera',91.80,'Great, we\'ll be in touch as soon as possible. Have a good one.']
     ]
   };
   var MASKED = {"gibbs": {"masked": [[0.85, 2.06], [8.76, 10.41], [26.26, 27.29], [50.08, 53.81], [56.8, 60.45], [63.4, 66.19], [66.69, 67.97], [71.44, 76.47]], "duration": 87.0}, "donmills": {"masked": [[0.95, 2.25], [7.37, 8.01], [10.21, 13.63], [43.07, 43.71], [45.94, 48.16], [50.08, 51.76], [60.31, 62.07], [63.84, 66.0], [69.39, 72.61], [75.3, 78.26], [78.76, 80.28], [83.16, 87.48]], "duration": 93.9}};
+  var css = getComputedStyle(document.documentElement); function tok(v){ return css.getPropertyValue(v).trim(); }
 
   /* reveal */
-  var rv = document.querySelectorAll('.rv, .stat, .ledger, .steps');
-  if ('IntersectionObserver' in window && !reduce) {
-    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    rv.forEach(function(el){ io.observe(el); });
-  } else { rv.forEach(function(el){ el.classList.add('in'); }); }
+  var rvs = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window && !reduce) { var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: 0.1 }); rvs.forEach(function(el){ io.observe(el); }); } else { rvs.forEach(function(el){ el.classList.add('in'); }); }
 
-  /* count-up on the hero numbers (DOM already holds the final value) */
-  if (!reduce) {
-    document.querySelectorAll('.stat b[data-count]').forEach(function(el, i){
-      var target = parseFloat(el.getAttribute('data-count')); var suffix = el.getAttribute('data-suffix') || ''; var isInt = el.getAttribute('data-format') === 'int';
-      var t0 = null, dur = 1400, delay = 200 + i * 160;
-      function fmt(v){ var n = Math.round(v); return isInt ? n.toLocaleString('en-US') : String(n); }
-      function step(ts){ if (t0 === null) t0 = ts; var p = Math.min(1, (ts - t0 - delay) / dur); if (p < 0) { requestAnimationFrame(step); return; } var e = 1 - Math.pow(1 - p, 3); el.innerHTML = fmt(target * e) + (suffix ? '<small>' + suffix + '</small>' : ''); if (p < 1) requestAnimationFrame(step); }
-      requestAnimationFrame(step);
-    });
-  }
+  /* counters */
+  if (!reduce) document.querySelectorAll('.row .v[data-count]').forEach(function(el, i){
+    var target = +el.getAttribute('data-count'), suf = el.getAttribute('data-suffix') || '', pre = el.getAttribute('data-prefix') || '', t0 = null, dur = 1300, delay = 500 + i*140;
+    function step(ts){ if (t0 === null) t0 = ts; var p = (ts - t0 - delay) / dur; if (p < 0) { requestAnimationFrame(step); return; } p = Math.min(1, p); var e = 1 - Math.pow(1-p, 3); var n = Math.round(target*e); el.innerHTML = pre + (target >= 1000 ? n.toLocaleString('en-US') : n) + (suf ? '<small>' + suf + '</small>' : ''); if (p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  });
 
-  /* aurora */
-  var cv = document.getElementById('aurora');
-  if (cv && cv.getContext) {
-    var ctx = cv.getContext('2d'), W, H, t = 0;
-    var cs = getComputedStyle(document.documentElement);
-    function col(v){ return cs.getPropertyValue(v).trim(); }
-    function size(){ var r = cv.getBoundingClientRect(); W = cv.width = Math.max(300, Math.floor(r.width / 2)); H = cv.height = Math.max(200, Math.floor(r.height / 2)); }
-    function draw(){
-      ctx.clearRect(0,0,W,H);
-      var blobs = [ [0.25 + 0.08*Math.sin(t*0.7), 0.35 + 0.06*Math.cos(t*0.5), 0.55, col('--aurora-a')], [0.72 + 0.07*Math.cos(t*0.6), 0.30 + 0.08*Math.sin(t*0.8), 0.5, col('--aurora-b')], [0.55 + 0.1*Math.sin(t*0.4), 0.75 + 0.05*Math.cos(t*0.9), 0.45, col('--aurora-c')] ];
-      blobs.forEach(function(b){ var g = ctx.createRadialGradient(b[0]*W, b[1]*H, 0, b[0]*W, b[1]*H, b[2]*W); g.addColorStop(0, b[3]); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0,0,W,H); });
-      t += 0.012; if (!reduce) requestAnimationFrame(draw);
-    }
+  /* speed lines */
+  (function(){ var c = document.getElementById('speed'); if (!c) return; var g = c.getContext('2d'), W, H, lines = [], mx = 0.5, my = 0.5;
+    function size(){ var r = c.getBoundingClientRect(); W = c.width = Math.floor(r.width); H = c.height = Math.floor(r.height); lines = []; for (var i = 0; i < (W < 700 ? 26 : 52); i++) lines.push(mk(true)); }
+    function mk(rand){ return { x: rand ? Math.random()*W : -200, y: Math.random()*H, len: 60 + Math.random()*260, sp: 2 + Math.random()*6, a: .05 + Math.random()*.18, hue: Math.random() < .15 ? 'gold' : (Math.random() < .5 ? 'purple' : 'ink') }; }
+    var cols = { gold: '240,180,41', purple: '180,76,255', ink: '245,239,230' };
+    function draw(){ g.clearRect(0,0,W,H); var ox = (mx - .5) * 30, oy = (my - .5) * 12;
+      lines.forEach(function(l){ var grad = g.createLinearGradient(l.x, 0, l.x + l.len, 0); grad.addColorStop(0, 'rgba(' + cols[l.hue] + ',0)'); grad.addColorStop(1, 'rgba(' + cols[l.hue] + ',' + l.a + ')'); g.strokeStyle = grad; g.lineWidth = l.hue === 'gold' ? 1.6 : 1; g.beginPath(); g.moveTo(l.x + ox, l.y + oy); g.lineTo(l.x + l.len + ox, l.y + oy); g.stroke(); l.x += l.sp; if (l.x > W + 50) { var n = mk(false); l.x = n.x; l.y = n.y; l.len = n.len; l.sp = n.sp; l.a = n.a; l.hue = n.hue; } });
+      if (!reduce) requestAnimationFrame(draw); }
     size(); draw(); window.addEventListener('resize', function(){ size(); if (reduce) draw(); });
-    if (window.matchMedia) { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){ cs = getComputedStyle(document.documentElement); if (reduce) draw(); }); }
-  }
+    window.addEventListener('pointermove', function(e){ mx = e.clientX / window.innerWidth; my = e.clientY / window.innerHeight; }, { passive: true });
+  })();
 
-  /* players */
-  function fmtTime(s){ s = Math.max(0, Math.floor(s)); return Math.floor(s/60) + ':' + ('0' + (s % 60)).slice(-2); }
-  document.querySelectorAll('.call').forEach(function(card){
-    var key = card.getAttribute('data-call'); var turns = TURNS[key] || []; var masked = (MASKED[key] && MASKED[key].masked) || []; var duration = (MASKED[key] && MASKED[key].duration) || 0;
-    var audio = card.querySelector('audio'); var btn = card.querySelector('.play'); var canvas = card.querySelector('canvas'); var cur = card.querySelector('.cur'); var durEl = card.querySelector('.dur'); var list = card.querySelector('.turns');
-    var icPlay = btn.querySelector('.ic-play'), icPause = btn.querySelector('.ic-pause');
-    turns.sort(function(a,b){ return a[1]-b[1]; });
-    turns.forEach(function(tn, i){ var li = document.createElement('li'); li.className = tn[0]; li.setAttribute('data-i', i); li.innerHTML = '<b>' + (tn[0] === 'vera' ? 'Vera' : 'Caller') + '</b><span>' + tn[3] + '</span>'; li.addEventListener('click', function(){ audio.currentTime = tn[1]; if (audio.paused) audio.play(); }); list.appendChild(li); });
-    durEl.textContent = fmtTime(duration || 0);
-    var actx = null, analyser = null, data = null, connected = false;
-    var seed = key === 'gibbs' ? 7 : 3; var N = 72;
-    var staticBars = []; for (var i = 0; i < N; i++) { var v = 0.35 + 0.65 * Math.abs(Math.sin(i * 0.9 + seed) * Math.cos(i * 0.37 + seed * 1.3)); staticBars.push(v); }
-    function ensureAnalyser(){ if (connected) return; try { var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; actx = new AC(); var src = actx.createMediaElementSource(audio); analyser = actx.createAnalyser(); analyser.fftSize = 256; src.connect(analyser); analyser.connect(actx.destination); data = new Uint8Array(analyser.frequencyBinCount); connected = true; } catch (e) { connected = false; } }
-    var g = canvas.getContext('2d'); var dpr = Math.min(2, window.devicePixelRatio || 1);
-    function size(){ var r = canvas.getBoundingClientRect(); canvas.width = Math.floor(r.width * dpr); canvas.height = Math.floor(64 * dpr); }
-    function draw(){
-      var W = canvas.width, H = canvas.height; g.clearRect(0,0,W,H);
-      var cs2 = getComputedStyle(document.documentElement); var amber = cs2.getPropertyValue('--amber').trim(); var ink3 = cs2.getPropertyValue('--ink-3').trim(); var rule = cs2.getPropertyValue('--rule').trim();
-      var dur = audio.duration || duration || 1; var p = (audio.currentTime || 0) / dur;
-      /* masked spans as hatched strips along the bottom */
-      masked.forEach(function(m){ var x0 = m[0]/dur*W, x1 = m[1]/dur*W; g.save(); g.globalAlpha = 0.55; g.fillStyle = ink3; for (var x = x0; x < x1; x += 4*dpr) { g.fillRect(x, H - 6*dpr, 2*dpr, 6*dpr); } g.restore(); });
+  /* tilt */
+  if (!reduce && window.matchMedia('(hover: hover)').matches) document.querySelectorAll('.tile').forEach(function(t){ t.addEventListener('pointermove', function(e){ var r = t.getBoundingClientRect(); var x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5; t.style.transform = 'rotateX(' + (-y*7) + 'deg) rotateY(' + (x*9) + 'deg) translateY(-3px)'; }); t.addEventListener('pointerleave', function(){ t.style.transform = ''; }); });
+
+  /* radio players */
+  function fmt(s){ s = Math.max(0, Math.floor(s||0)); return Math.floor(s/60) + ':' + ('0' + (s%60)).slice(-2); }
+  document.querySelectorAll('.ch').forEach(function(card){
+    var key = card.getAttribute('data-call'), turns = TURNS[key] || [], masked = (MASKED[key] && MASKED[key].masked) || [], duration = (MASKED[key] && MASKED[key].duration) || 0;
+    var audio = card.querySelector('audio'), btn = card.querySelector('.play'), canvas = card.querySelector('canvas'), cur = card.querySelector('.cur'), durEl = card.querySelector('.dur'), who = card.querySelector('.who'), txt = card.querySelector('.txt');
+    var icPlay = btn.querySelector('.ic-play'), icPause = btn.querySelector('.ic-pause'); var color = getComputedStyle(card).getPropertyValue('--c').trim();
+    var actx = null, analyser = null, data = null, connected = false, shown = -1;
+    function ensure(){ if (connected) return; try { var AC = window.AudioContext || window.webkitAudioContext; actx = new AC(); var src = actx.createMediaElementSource(audio); analyser = actx.createAnalyser(); analyser.fftSize = 256; src.connect(analyser); analyser.connect(actx.destination); data = new Uint8Array(analyser.frequencyBinCount); connected = true; } catch (e) { connected = false; } }
+    var g = canvas.getContext('2d'), dpr = Math.min(2, window.devicePixelRatio || 1), N = 80, seed = key === 'gibbs' ? 5 : 9, bars = [];
+    for (var i = 0; i < N; i++) bars.push(0.25 + 0.75 * Math.abs(Math.sin(i*0.8+seed) * Math.cos(i*0.31+seed)));
+    function size(){ var r = canvas.getBoundingClientRect(); canvas.width = Math.floor(r.width*dpr); canvas.height = Math.floor(72*dpr); }
+    function draw(){ var W = canvas.width, H = canvas.height; g.clearRect(0,0,W,H); var dur = audio.duration || duration || 1, p = (audio.currentTime||0)/dur;
+      masked.forEach(function(m){ var x0 = m[0]/dur*W, x1 = m[1]/dur*W; g.fillStyle = 'rgba(245,239,230,.10)'; g.fillRect(x0, 0, x1-x0, H); });
       var live = null; if (connected && analyser && !audio.paused) { analyser.getByteFrequencyData(data); live = data; }
-      var gap = 2*dpr, bw = (W - gap*(N-1)) / N;
-      for (var i = 0; i < N; i++) {
-        var amp = staticBars[i];
-        if (live) { var idx = Math.floor(Math.pow(i / N, 1.6) * (live.length * 0.6)); amp = 0.15 + 0.85 * (live[idx] / 255); }
-        var h = Math.max(3*dpr, amp * (H - 12*dpr)); var x = i * (bw + gap); var y = (H - 8*dpr - h) / 2 + 2*dpr;
-        var done = (x + bw/2) / W <= p;
-        g.fillStyle = done ? amber : rule; g.beginPath(); var r = Math.min(bw/2, 2*dpr); g.roundRect ? g.roundRect(x, y, bw, h, r) : g.rect(x, y, bw, h); g.fill();
-      }
-      cur.textContent = fmtTime(audio.currentTime || 0);
-      /* transcript sync */
-      var tcur = audio.currentTime || 0, active = -1; for (var k = 0; k < turns.length; k++) { if (turns[k][1] <= tcur + 0.05) active = k; }
-      var lis = list.children; for (var k2 = 0; k2 < lis.length; k2++) { var on = (k2 === active && !audio.paused) || (k2 === active && tcur > 0); if (on !== lis[k2].classList.contains('on')) { lis[k2].classList.toggle('on', on); if (on) { var li = lis[k2]; var top = li.offsetTop - list.offsetTop - 60; list.scrollTo ? list.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' }) : (list.scrollTop = top); } } }
-      if (!audio.paused) requestAnimationFrame(draw);
-    }
-    size(); draw();
-    window.addEventListener('resize', function(){ size(); draw(); });
-    btn.addEventListener('click', function(){ if (audio.paused) { ensureAnalyser(); if (actx && actx.state === 'suspended') actx.resume(); document.querySelectorAll('.call audio').forEach(function(a){ if (a !== audio) a.pause(); }); audio.play(); } else { audio.pause(); } });
-    canvas.addEventListener('click', function(ev){ var r = canvas.getBoundingClientRect(); var frac = (ev.clientX - r.left) / r.width; var dur = audio.duration || duration; if (dur) { audio.currentTime = Math.max(0, Math.min(dur, frac * dur)); draw(); } });
+      var gap = 2*dpr, bw = (W - gap*(N-1))/N;
+      for (var i = 0; i < N; i++) { var amp = bars[i]; if (live) { var idx = Math.floor(Math.pow(i/N, 1.5) * live.length * 0.55); amp = 0.12 + 0.88*(live[idx]/255); } var h = Math.max(3*dpr, amp*(H-10*dpr)), x = i*(bw+gap), y = (H-h)/2; var done = (x+bw/2)/W <= p; g.fillStyle = done ? color : 'rgba(245,239,230,.22)'; g.fillRect(x, y, bw, h); }
+      cur.textContent = fmt(audio.currentTime);
+      var t = audio.currentTime || 0, active = -1; for (var k = 0; k < turns.length; k++) if (turns[k][1] <= t + 0.05) active = k;
+      if (active !== shown && active >= 0) { shown = active; var tn = turns[active]; who.textContent = tn[0] === 'vera' ? 'Vera' : 'Caller'; who.className = 'who ' + tn[0]; txt.classList.add('fade'); setTimeout(function(){ txt.innerHTML = tn[2]; txt.classList.remove('fade'); }, reduce ? 0 : 120); }
+      if (!audio.paused) requestAnimationFrame(draw); }
+    size(); draw(); window.addEventListener('resize', function(){ size(); draw(); });
+    btn.addEventListener('click', function(){ if (audio.paused) { ensure(); if (actx && actx.state === 'suspended') actx.resume(); document.querySelectorAll('.ch audio').forEach(function(a){ if (a !== audio) a.pause(); }); audio.play(); } else audio.pause(); });
+    canvas.addEventListener('click', function(ev){ var r = canvas.getBoundingClientRect(); var dur = audio.duration || duration; if (dur) { audio.currentTime = Math.max(0, Math.min(dur, (ev.clientX - r.left)/r.width*dur)); shown = -1; draw(); } });
     audio.addEventListener('play', function(){ btn.classList.add('on'); icPlay.hidden = true; icPause.hidden = false; requestAnimationFrame(draw); });
     audio.addEventListener('pause', function(){ btn.classList.remove('on'); icPlay.hidden = false; icPause.hidden = true; draw(); });
-    audio.addEventListener('ended', function(){ audio.currentTime = 0; draw(); });
-    audio.addEventListener('loadedmetadata', function(){ durEl.textContent = fmtTime(audio.duration); draw(); });
-    audio.addEventListener('timeupdate', function(){ if (audio.paused) draw(); });
+    audio.addEventListener('ended', function(){ audio.currentTime = 0; shown = -1; who.textContent = 'Radio'; who.className = 'who'; txt.innerHTML = 'Again?'; draw(); });
+    audio.addEventListener('loadedmetadata', function(){ durEl.textContent = fmt(audio.duration); draw(); });
   });
+
+  /* guitar strings */
+  (function(){ var c = document.getElementById('strings'); if (!c) return; var g = c.getContext('2d'), W, H, dpr = Math.min(2, window.devicePixelRatio||1);
+    var notes = [82.41, 110.0, 146.83, 196.0, 246.94, 329.63], names = ['E','A','D','G','B','e'], S = notes.map(function(f, i){ return { f: f, amp: 0, ph: 0, w: 4.2 - i*0.55 }; }), actx = null, last = -1;
+    function size(){ var r = c.getBoundingClientRect(); W = c.width = Math.floor(r.width*dpr); H = c.height = Math.floor(r.height*dpr); }
+    function yOf(i){ return H * (0.16 + i * 0.136); }
+    function draw(){ g.clearRect(0,0,W,H);
+      S.forEach(function(s, i){ var y = yOf(i); g.beginPath(); var segs = 60; for (var k = 0; k <= segs; k++) { var x = k/segs*W; var env = Math.sin(Math.PI*k/segs); var off = s.amp * env * Math.sin(s.ph + k*0.6) * 14*dpr; if (k === 0) g.moveTo(x, y+off); else g.lineTo(x, y+off); } g.lineWidth = s.w*dpr*0.9; g.strokeStyle = s.amp > 0.02 ? '#F0B429' : 'rgba(245,239,230,.55)'; g.shadowColor = s.amp > 0.02 ? 'rgba(240,180,41,.8)' : 'transparent'; g.shadowBlur = s.amp*24*dpr; g.stroke(); g.shadowBlur = 0;
+        g.fillStyle = 'rgba(245,239,230,.35)'; g.font = (11*dpr) + 'px JetBrains Mono, monospace'; g.fillText(names[i], 14*dpr, y - 8*dpr);
+        s.ph += 0.9; s.amp *= 0.955; });
+      g.fillStyle = 'rgba(240,180,41,.9)'; g.fillRect(0, 0, 3*dpr, H); /* nut */
+      if (S.some(function(s){ return s.amp > 0.005; }) && !reduce) requestAnimationFrame(draw); }
+    function pluck(i, vel){ var s = S[i]; s.amp = Math.min(1, 0.6 + vel); s.ph = 0; draw();
+      try { var AC = window.AudioContext || window.webkitAudioContext; if (!actx) actx = new AC(); if (actx.state === 'suspended') actx.resume(); var t = actx.currentTime; var o = actx.createOscillator(), o2 = actx.createOscillator(), gn = actx.createGain(), flt = actx.createBiquadFilter(); o.type = 'triangle'; o2.type = 'sine'; o.frequency.value = s.f; o2.frequency.value = s.f*2.001; flt.type = 'lowpass'; flt.frequency.setValueAtTime(2600, t); flt.frequency.exponentialRampToValueAtTime(500, t+1.6); gn.gain.setValueAtTime(0.0001, t); gn.gain.exponentialRampToValueAtTime(0.22, t+0.006); gn.gain.exponentialRampToValueAtTime(0.0001, t+1.9); o.connect(flt); o2.connect(flt); flt.connect(gn); gn.connect(actx.destination); o.start(t); o2.start(t); o.stop(t+2); o2.stop(t+2); } catch (e) {} }
+    function hit(e){ var r = c.getBoundingClientRect(); var y = (e.clientY - r.top) * dpr; var best = -1, bd = 1e9; S.forEach(function(s, i){ var d = Math.abs(yOf(i) - y); if (d < bd) { bd = d; best = i; } }); return bd < 14*dpr ? best : -1; }
+    c.addEventListener('pointermove', function(e){ var i = hit(e); if (i !== last) { if (i >= 0 && (e.pressure > 0 || e.pointerType === 'mouse')) pluck(i, 0.3); last = i; } });
+    c.addEventListener('pointerdown', function(e){ var i = hit(e); if (i >= 0) pluck(i, 0.4); last = i; });
+    c.addEventListener('pointerleave', function(){ last = -1; });
+    size(); draw(); window.addEventListener('resize', function(){ size(); draw(); });
+  })();
 })();
 </script>
 
