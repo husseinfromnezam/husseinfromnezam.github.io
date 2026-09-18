@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Hussein Abou-Eita, AI automation and analytics specialist. AI phone receptionists (with real, redacted call recordings), quoting apps, analytics pipelines and an ERP from scratch, each with the numbers.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Hussein Abou-Eita">
+<meta property="og:description" content="Automations that answer the phone, price the job, and report the number.">
+<title>Hussein Abou-Eita</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #F4F6FA; --bg-2: #EBEFF5; --surface: #FFFFFF; --glass: rgba(255,255,255,.72);
+    --ink: #0E1420; --ink-2: #47526A; --ink-3: #7A849A; --rule: #D9DFEA; --rule-soft: #E8ECF3;
+    --amber: #B7791F; --amber-ink: #8E5C12; --amber-soft: rgba(183,121,31,.14);
+    --ice: #1F6FEB; --ice-ink: #164FB0; --ice-soft: rgba(31,111,235,.12);
+    --chip: #EEF2F8; --shadow: 0 1px 0 rgba(14,20,32,.05), 0 24px 60px -30px rgba(14,20,32,.35);
+    --aurora-a: rgba(183,121,31,.22); --aurora-b: rgba(31,111,235,.18); --aurora-c: rgba(120,80,220,.12);
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0A0E17; --bg-2: #0E1320; --surface: #121827; --glass: rgba(18,24,39,.72);
+      --ink: #EEF2F7; --ink-2: #A9B3C4; --ink-3: #6E7A8F; --rule: #1F2838; --rule-soft: #171F2D;
+      --amber: #F2B54B; --amber-ink: #FFD27A; --amber-soft: rgba(242,181,75,.14);
+      --ice: #7CC4FF; --ice-ink: #A9DBFF; --ice-soft: rgba(124,196,255,.12);
+      --chip: #161E2E; --shadow: 0 1px 0 rgba(0,0,0,.5), 0 30px 70px -30px rgba(0,0,0,.9);
+      --aurora-a: rgba(242,181,75,.20); --aurora-b: rgba(124,196,255,.16); --aurora-c: rgba(140,100,255,.14);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0A0E17; --bg-2: #0E1320; --surface: #121827; --glass: rgba(18,24,39,.72);
+    --ink: #EEF2F7; --ink-2: #A9B3C4; --ink-3: #6E7A8F; --rule: #1F2838; --rule-soft: #171F2D;
+    --amber: #F2B54B; --amber-ink: #FFD27A; --amber-soft: rgba(242,181,75,.14);
+    --ice: #7CC4FF; --ice-ink: #A9DBFF; --ice-soft: rgba(124,196,255,.12);
+    --chip: #161E2E; --shadow: 0 1px 0 rgba(0,0,0,.5), 0 30px 70px -30px rgba(0,0,0,.9);
+    --aurora-a: rgba(242,181,75,.20); --aurora-b: rgba(124,196,255,.16); --aurora-c: rgba(140,100,255,.14);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.55; font-optical-sizing: auto; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding-inline: 22px; min-width: 0; }
+  h1, h2, h3, h4 { font-family: var(--display); font-optical-sizing: auto; letter-spacing: -0.015em; text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  .mono { font-family: var(--mono); font-size: 13px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* reveal motion: everything is visible at rest, motion is a small settle */
+  .rv { transform: translateY(14px); transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+  .rv.in { transform: none; }
+  .rv-d1 { transition-delay: .08s } .rv-d2 { transition-delay: .16s } .rv-d3 { transition-delay: .24s }
+
+  /* masthead */
+  .masthead { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 14px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); background: color-mix(in srgb, var(--bg) 78%, transparent); border-bottom: 1px solid var(--rule-soft); }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+  .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px var(--amber-soft); animation: breathe 3s ease-in-out infinite; }
+  @keyframes breathe { 0%,100% { box-shadow: 0 0 0 3px var(--amber-soft) } 50% { box-shadow: 0 0 0 8px transparent } }
+  nav { display: flex; gap: 20px; flex-wrap: wrap; }
+  nav a { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-2); padding-block: 4px; position: relative; }
+  nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 1px; background: var(--amber); transition: right .3s ease; }
+  nav a:hover::after { right: 0; }
+  nav a:hover { color: var(--ink); }
+
+  /* hero */
+  .hero { position: relative; padding-block: 84px 64px; isolation: isolate; }
+  .aurora { position: absolute; inset: -120px -40vw 0 -40vw; z-index: -1; pointer-events: none; filter: blur(60px); opacity: .9; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 48px; align-items: end; }
+  .hero h1 { font-size: clamp(2.6rem, 6vw, 5.4rem); font-weight: 800; line-height: .98; letter-spacing: -0.035em; max-width: 13ch; }
+  .hero h1 .l { display: block; }
+  .hero h1 em { font-style: normal; color: var(--amber); }
+  .hero h1 em.ice { color: var(--ice); }
+  .lede { font-size: 21px; line-height: 1.5; color: var(--ink-2); max-width: 46ch; margin-top: 26px; }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+  .btn { font-family: var(--mono); font-size: 13px; padding: 12px 18px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink); transition: transform .2s ease, box-shadow .2s ease, background .2s, border-color .2s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--ink-3); }
+  .btn.primary { background: var(--amber); border-color: var(--amber); color: #14110A; font-weight: 600; }
+  .btn.primary:hover { background: var(--amber-ink); border-color: var(--amber-ink); }
+  .stats { display: grid; gap: 14px; }
+  .stat { position: relative; background: var(--glass); border: 1px solid var(--rule); border-radius: 16px; padding: 18px 20px 16px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow); overflow: hidden; }
+  .stat b { font-family: var(--display); font-weight: 800; font-size: 46px; line-height: 1; letter-spacing: -0.04em; color: var(--amber-ink); display: block; }
+  .stat b small { font-size: 22px; letter-spacing: 0; color: var(--ink-3); font-weight: 600; margin-left: 4px; }
+  .stat span { display: block; font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); line-height: 1.45; margin-top: 8px; }
+  .stat .bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--amber), var(--ice)); transition: width 1.4s cubic-bezier(.2,.7,.2,1); }
+  .stat.in .bar { width: 100%; }
+
+  /* sections */
+  section { padding-block: 72px; border-top: 1px solid var(--rule-soft); scroll-margin-top: 64px; }
+  .sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 20px 48px; align-items: end; margin-bottom: 44px; }
+  .sec-head .idx { font-family: var(--mono); font-size: 12px; color: var(--amber-ink); letter-spacing: .14em; margin-bottom: 10px; }
+  .sec-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
+  .sec-head p { color: var(--ink-2); font-size: 17.5px; max-width: 60ch; }
+
+  /* builds */
+  .build { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px 52px; padding-block: 44px; border-top: 1px solid var(--rule-soft); }
+  .build:first-of-type { border-top: 0; padding-top: 0; }
+  .kicker { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+  .kicker .tag { font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); }
+  .kicker .tag.role { color: var(--ice-ink); background: var(--ice-soft); padding: 3px 8px; border-radius: 999px; }
+  .build h3 { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+  .story { margin-top: 16px; display: grid; gap: 14px; max-width: 62ch; }
+  .story b { font-family: var(--mono); font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--amber-ink); display: block; margin-bottom: 3px; }
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; }
+  .flow span { font-family: var(--mono); font-size: 12px; padding: 6px 10px; background: var(--chip); border: 1px solid var(--rule); border-radius: 8px; color: var(--ink-2); animation: signal 5.6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * .55s); }
+  .flow i { font-style: normal; color: var(--ink-3); font-family: var(--mono); font-size: 12px; }
+  @keyframes signal { 0%, 14%, 100% { box-shadow: 0 0 0 0 transparent; border-color: var(--rule); color: var(--ink-2); } 6% { box-shadow: 0 0 0 4px var(--amber-soft); border-color: var(--amber); color: var(--ink); } }
+  .stackline { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-top: 16px; }
+
+  .ledger { min-width: 0; align-self: start; background: var(--glass); border: 1px solid var(--rule); border-radius: 18px; padding: 20px 22px 10px; box-shadow: var(--shadow); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: transform .35s ease, box-shadow .35s ease; }
+  .ledger:hover { transform: translateY(-3px); }
+  .ledger .lh { font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); display: flex; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .ledger .lh b { color: var(--amber-ink); font-weight: 600; }
+  .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding-block: 12px; border-bottom: 1px solid var(--rule-soft); align-items: baseline; }
+  .row:last-of-type { border-bottom: 0; }
+  .row .k { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+  .row .v { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.03em; white-space: nowrap; text-align: right; }
+  .row .v .from { font-family: var(--mono); font-weight: 400; font-size: 12.5px; color: var(--ink-3); margin-right: 8px; text-decoration: line-through; }
+  .row .v .to { color: var(--amber-ink); }
+  .row .track { grid-column: 1 / -1; height: 3px; background: var(--rule-soft); border-radius: 2px; position: relative; overflow: visible; }
+  .row .track .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 2px; background: linear-gradient(90deg, var(--ice), var(--amber)); transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
+  .ledger.in .row .track .fill { width: var(--w, 100%); }
+  .row .track .tick { position: absolute; top: -3px; width: 2px; height: 9px; background: var(--ink-3); left: var(--t, 0%); border-radius: 1px; }
+  .ledger .note { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); padding-block: 12px 8px; }
+
+  .also { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 40px; }
+  .also article { padding: 20px 20px 18px; border: 1px solid var(--rule); border-radius: 16px; background: var(--surface); transition: transform .3s ease, box-shadow .3s ease, border-color .3s; min-width: 0; }
+  .also article:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--ink-3); }
+  .also h4 { font-weight: 700; font-size: 17px; margin: 0 0 6px; }
+  .also p { font-size: 15px; color: var(--ink-2); line-height: 1.45; }
+  .also .eyebrow { margin-bottom: 10px; color: var(--amber-ink); }
+
+  /* calls */
+  .callgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .call { min-width: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; padding: 20px 22px 18px; display: grid; gap: 14px; align-content: start; box-shadow: var(--shadow); }
+  .call .meta { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); }
+  .call .meta .pill { color: var(--ice-ink); background: var(--ice-soft); border-radius: 999px; padding: 3px 9px; }
+  .player { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; align-items: center; }
+  .play { width: 52px; height: 52px; border-radius: 50%; border: 0; background: var(--amber); color: #14110A; display: grid; place-items: center; cursor: pointer; transition: transform .2s ease, background .2s; box-shadow: 0 0 0 0 var(--amber-soft); }
+  .play:hover { transform: scale(1.06); }
+  .play.on { animation: ring 1.6s ease-out infinite; }
+  @keyframes ring { 0% { box-shadow: 0 0 0 0 var(--amber-soft) } 100% { box-shadow: 0 0 0 16px transparent } }
+  .play svg { width: 20px; height: 20px; fill: currentColor; }
+  .wave { position: relative; height: 64px; min-width: 0; }
+  .wave canvas { width: 100%; height: 64px; display: block; border-radius: 8px; cursor: pointer; }
+  .time { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 4px; }
+  .time .masked-key { display: inline-flex; align-items: center; gap: 6px; }
+  .time .masked-key i { display: inline-block; width: 14px; height: 8px; border-radius: 2px; background: repeating-linear-gradient(135deg, var(--ink-3) 0 2px, transparent 2px 5px); opacity: .7; }
+  .turns { display: grid; gap: 6px; margin: 0; padding: 0 4px 0 0; list-style: none; max-height: 340px; overflow-y: auto; scrollbar-width: thin; }
+  .turns li { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 10px; font-size: 15px; line-height: 1.45; padding: 7px 10px; border-radius: 10px; border-left: 2px solid transparent; transition: background .3s, border-color .3s; overflow-wrap: anywhere; }
+  .turns li.on { background: var(--amber-soft); border-left-color: var(--amber); }
+  .turns b { font-family: var(--mono); font-weight: 600; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding-top: 4px; }
+  .turns li.vera b { color: var(--ice-ink); }
+  .turns .redact { font-family: var(--mono); font-size: 12px; color: var(--ink-3); background: var(--chip); border: 1px dashed var(--rule); border-radius: 4px; padding: 0 5px; }
+  .call .out { margin: 0; padding-top: 12px; border-top: 1px solid var(--rule-soft); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 5px 12px; font-family: var(--mono); font-size: 12px; }
+  .call .out dt { color: var(--ink-3); }
+  .call .out dd { margin: 0; color: var(--ink); }
+  .call .out dd.good { color: var(--amber-ink); }
+
+  /* method */
+  .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; position: relative; }
+  .steps::before { content: ""; position: absolute; left: 0; top: 0; height: 2px; width: 0; background: linear-gradient(90deg, var(--amber), var(--ice)); transition: width 1.8s cubic-bezier(.2,.7,.2,1); }
+  .steps.in::before { width: 100%; }
+  .step { border-top: 2px solid var(--rule); padding-top: 16px; min-width: 0; }
+  .step .n { font-family: var(--mono); font-size: 12px; color: var(--amber-ink); letter-spacing: 0.12em; }
+  .step h3 { font-size: 21px; font-weight: 800; margin-top: 6px; letter-spacing: -0.02em; }
+  .step p { font-size: 15.5px; color: var(--ink-2); margin-top: 8px; line-height: 1.5; }
+  .step pre { margin: 14px 0 0; font-family: var(--mono); font-size: 11.5px; line-height: 1.55; color: var(--ink-2); background: var(--chip); border: 1px solid var(--rule-soft); border-radius: 10px; padding: 12px 14px; overflow-x: auto; white-space: pre; }
+  .step pre b { color: var(--amber-ink); font-weight: 600; }
+
+  /* stack */
+  .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px 40px; }
+  .stack h3 { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); font-weight: 600; margin-bottom: 12px; }
+  .stack ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack li { font-family: var(--mono); font-size: 12.5px; padding: 7px 11px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); transition: transform .2s ease, border-color .2s, box-shadow .2s; }
+  .stack li:hover { transform: translateY(-2px); border-color: var(--amber); box-shadow: 0 0 0 4px var(--amber-soft); }
+
+  /* about */
+  .about { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 32px 52px; }
+  .about p { font-size: 18.5px; max-width: 60ch; }
+  .about p + p { margin-top: 14px; }
+  .facts { display: grid; border-top: 1px solid var(--ink); align-self: start; }
+  .facts div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding-block: 12px; border-bottom: 1px solid var(--rule); font-size: 15px; }
+  .facts b { font-family: var(--mono); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); padding-top: 3px; }
+  .facts a { color: var(--ice-ink); border-bottom: 1px solid var(--ice-soft); }
+  .facts a:hover { border-bottom-color: var(--ice); }
+  footer { padding-block: 30px 46px; border-top: 1px solid var(--rule-soft); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer .mono { color: var(--ink-3); }
+
+  @media (max-width: 900px) {
+    .hero { padding-block: 56px 44px; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+    .sec-head { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-bottom: 30px; }
+    .build { grid-template-columns: minmax(0, 1fr); gap: 22px; padding-block: 34px; }
+    .callgrid { grid-template-columns: minmax(0, 1fr); }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .about { grid-template-columns: minmax(0, 1fr); }
+    section { padding-block: 56px; }
+  }
+  @media (max-width: 540px) {
+    body { font-size: 16px; }
+    .steps { grid-template-columns: minmax(0, 1fr); }
+    .masthead { padding-block: 12px; }
+    nav { gap: 12px; }
+    nav a { font-size: 11px; letter-spacing: .08em; }
+    nav a.hide-m { display: none; }
+    .stat b { font-size: 38px; }
+    .row .v { font-size: 20px; }
+    .facts div { grid-template-columns: 92px minmax(0, 1fr); }
+    .turns { max-height: 300px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rv { transform: none; }
+    .stat .bar, .steps::before { width: 100% !important; }
+    .ledger .row .track .fill { width: var(--w, 100%) !important; }
+  }
+</style>
+
+
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Hussein Abou-Eita</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a><a href="#calls">Listen</a><a class="hide-m" href="#method">Method</a><a class="hide-m" href="#stack">Stack</a><a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top" style="border-top:0">
+    <canvas class="aurora" id="aurora" aria-hidden="true"></canvas>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow rv">Cairo · working Toronto and US hours · remote</p>
+        <h1 class="rv rv-d1" style="margin-top:18px"><span class="l">Automations that</span><span class="l"><em>answer the phone,</em></span><span class="l">price the job, and</span><span class="l"><em class="ice">report the number.</em></span></h1>
+        <p class="lede rv rv-d2">I come into a business, watch how the work actually gets done, pull the data, and build the automation that moves the number that matters. Then I put a dashboard next to it so everyone can see whether it worked.</p>
+        <div class="cta rv rv-d3">
+          <a class="btn primary" href="mailto:aboueitabe@gmail.com">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/hussein-abou-eita/">LinkedIn</a>
+          <a class="btn" href="#calls">Hear the receptionist</a>
+        </div>
+      </div>
+      <div class="stats" aria-label="Headline results">
+        <div class="stat rv"><b class="num" data-count="3655" data-format="int">3,655</b><span>inbound calls answered by an AI receptionist I built for a Toronto property manager, 35% of them after hours</span><i class="bar"></i></div>
+        <div class="stat rv rv-d1"><b class="num" data-count="11" data-suffix="×">11<small>×</small></b><span>Google impressions in four months for a rental-listings platform (1,397 to 15,632 per 28 days), with the pipelines and dashboard to prove it</span><i class="bar"></i></div>
+        <div class="stat rv rv-d2"><b class="num" data-count="70" data-suffix="%">70<small>%</small></b><span>faster order fulfilment at a manufacturing platform after an ERP built from scratch replaced its spreadsheets</span><i class="bar"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="sec-head">
+      <div><div class="idx">01 · Work</div><h2 class="rv">Selected builds</h2></div>
+      <p class="rv rv-d1">Seven systems that run in production today. Each one started with a baseline and ends with a ledger of what changed. Client names are withheld; every number is from the client's own data.</p>
+    </div>
+
+    <article class="build">
+      <div class="rv">
+        <div class="kicker"><span class="tag">Property management · Toronto</span><span class="tag role">2026 · built and run</span></div>
+        <h3>AI phone receptionists on two lines, tuned against a score on every call</h3>
+        <div class="story">
+          <p><b>Problem</b>Calls went unanswered, all of them after hours and some during the day. The ones that were answered often never reached the CRM, so leads died in a voicemail box.</p>
+          <p><b>Build</b>Two voice agents on Retell AI with n8n behind them. Each call is answered in seconds; the agent qualifies the caller, takes the property and contact details, and posts a structured summary to Slack, tagging the right person. Every call is then pulled, scored by Gemini against a written rubric, stored in Supabase and shown on a dashboard the owner opens. That loop drove 57 agent versions.</p>
+        </div>
+        <div class="flow" aria-label="System flow"><span style="--i:0">Inbound call</span><i>→</i><span style="--i:1">Retell agent</span><i>→</i><span style="--i:2">n8n</span><i>→</i><span style="--i:3">Slack + CRM</span><i>→</i><span style="--i:4">Gemini QA</span><i>→</i><span style="--i:5">Supabase</span><i>→</i><span style="--i:6">Dashboard</span></div>
+        <p class="stackline">Retell AI · n8n · Slack · Gemini · Supabase · Vercel · SIP diagnostics</p>
+      </div>
+      <div class="ledger rv rv-d1" aria-label="Results ledger">
+        <div class="lh"><b>Ledger</b><span>May to Sep 2026</span></div>
+        <div class="row"><span class="k">Inbound calls answered</span><span class="v num"><span class="to">3,655</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">After-hours answer rate</span><span class="v num"><span class="from">0%</span><span class="to">100%</span></span><span class="track"><span class="fill"></span><span class="tick" style="--t:0%"></span></span></div>
+        <div class="row"><span class="k">Calls arriving after hours</span><span class="v num"><span class="to">35%</span></span><span class="track"><span class="fill" style="--w:35%"></span></span></div>
+        <div class="row"><span class="k">Engaged calls with contact captured</span><span class="v num"><span class="to">82%</span></span><span class="track"><span class="fill" style="--w:82%"></span></span></div>
+        <div class="row"><span class="k">Share of the firm's leads via the agent</span><span class="v num"><span class="to">24%</span></span><span class="track"><span class="fill" style="--w:24%"></span></span></div>
+        <div class="row"><span class="k">Distinct callers · brokerages (86 days)</span><span class="v num"><span class="to">634 · 125</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Agent versions shipped</span><span class="v num"><span class="to">57</span></span><span class="track"><span class="fill"></span></span></div>
+        <p class="note">Also traced a caller-ID fault to the client's phone system from SIP headers, not to the agent.</p>
+      </div>
+    </article>
+
+    <article class="build">
+      <div class="rv">
+        <div class="kicker"><span class="tag">Rental-listings platform · Toronto</span><span class="tag role">May to Sep 2026 · retainer</span></div>
+        <h3>SEO and AI-search program with daily analytics pipelines and a live dashboard</h3>
+        <div class="story">
+          <p><b>Problem</b>A Next.js listings site that search engines and AI crawlers could barely read: crawlers blocked with 403s, no structured data, no llms.txt, and nobody measuring any of it.</p>
+          <p><b>Build</b>Thirteen pull requests merged in the client's codebase (robots and llms.txt, FAQPage and Dataset schema, owner-first pages, a monthly rent report). Daily Search Console and GA4 syncs on GitHub Actions feed a static dashboard on Vercel. A drift monitor captures eleven pages and four crawler views every day and opens a GitHub issue on regression. WAF rules cut bot traffic by three quarters.</p>
+        </div>
+        <div class="flow" aria-label="System flow"><span style="--i:0">GitHub Actions</span><i>→</i><span style="--i:1">Search Console + GA4 APIs</span><i>→</i><span style="--i:2">JSON</span><i>→</i><span style="--i:3">Dashboard</span><i>·</i><span style="--i:4">Drift monitor</span><i>→</i><span style="--i:5">GitHub issue</span></div>
+        <p class="stackline">Next.js · GitHub Actions · Python · Search Console API · GA4 API · Cloudflare · Wikidata</p>
+      </div>
+      <div class="ledger rv rv-d1" aria-label="Results ledger">
+        <div class="lh"><b>Ledger</b><span>first 28 days vs last 28</span></div>
+        <div class="row"><span class="k">Google impressions / 28 days</span><span class="v num"><span class="from">1,397</span><span class="to">15,632</span></span><span class="track"><span class="fill"></span><span class="tick" style="--t:9%"></span></span></div>
+        <div class="row"><span class="k">Clicks / 28 days</span><span class="v num"><span class="from">43</span><span class="to">274</span></span><span class="track"><span class="fill"></span><span class="tick" style="--t:16%"></span></span></div>
+        <div class="row"><span class="k">Pages surfacing in Google</span><span class="v num"><span class="from">1,103</span><span class="to">2,601</span></span><span class="track"><span class="fill"></span><span class="tick" style="--t:42%"></span></span></div>
+        <div class="row"><span class="k">AI-search readiness score</span><span class="v num"><span class="from">21</span><span class="to">62 / 100</span></span><span class="track"><span class="fill" style="--w:62%"></span><span class="tick" style="--t:21%"></span></span></div>
+        <div class="row"><span class="k">AI crawler access</span><span class="v num"><span class="from">403</span><span class="to">200 OK</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Bot traffic / week</span><span class="v num"><span class="from">61k</span><span class="to">13k</span></span><span class="track"><span class="fill" style="--w:21%"></span><span class="tick" style="--t:100%"></span></span></div>
+        <div class="row"><span class="k">PRs merged, all inside SLA</span><span class="v num"><span class="to">13</span></span><span class="track"><span class="fill"></span></span></div>
+      </div>
+    </article>
+
+    <article class="build">
+      <div class="rv">
+        <div class="kicker"><span class="tag">Manufacturing platform · Egypt</span><span class="tag role">Jun 2025 to Jan 2026 · in-house</span></div>
+        <h3>An ERP from scratch, and instant quoting from a CAD file</h3>
+        <div class="story">
+          <p><b>Problem</b>An on-demand B2B manufacturing platform routing parts to partner factories, run on spreadsheets. Quotes were built by hand in Word with a Gantt chart pasted from Excel, two hours of the founder's day. Purchase orders, supplier payments and the CRM lived in files that disagreed with each other.</p>
+          <p><b>Build</b>Spent the first weeks watching every process, then built an ERP specific to the business: orders tracked from quote to factory to delivery, supplier balances, a CRM automated in ClickUp and integrated into the ERP. Quoting became a pipeline: Python and CadQuery read the STEP file (bounding box, volume, surface area, bosses, holes), n8n assembles the priced PDF, and a Digifabster integration fed a 7,000-point dataset for an in-house pricing model. An AI layer on top lets leadership ask the business questions in plain language.</p>
+        </div>
+        <div class="flow" aria-label="System flow"><span style="--i:0">STEP file</span><i>→</i><span style="--i:1">CadQuery parser</span><i>→</i><span style="--i:2">Pricing model</span><i>→</i><span style="--i:3">n8n</span><i>→</i><span style="--i:4">Priced PDF quote</span><i>→</i><span style="--i:5">ERP order</span></div>
+        <p class="stackline">Python · CadQuery · n8n · ClickUp · Digifabster · Google Sheets</p>
+      </div>
+      <div class="ledger rv rv-d1" aria-label="Results ledger">
+        <div class="lh"><b>Ledger</b><span>seven months</span></div>
+        <div class="row"><span class="k">Order fulfilment time</span><span class="v num"><span class="to">−70%</span></span><span class="track"><span class="fill" style="--w:30%"></span><span class="tick" style="--t:100%"></span></span></div>
+        <div class="row"><span class="k">Founder's daily quoting time</span><span class="v num"><span class="from">2 h</span><span class="to">0</span></span><span class="track"><span class="fill" style="--w:2%"></span><span class="tick" style="--t:100%"></span></span></div>
+        <div class="row"><span class="k">Pricing dataset</span><span class="v num"><span class="to">7,000 points</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">CRM accounts · leads</span><span class="v num"><span class="to">200 · 470</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Manufacturing processes quoted (CNC to 3D print)</span><span class="v num"><span class="to">6</span></span><span class="track"><span class="fill"></span></span></div>
+      </div>
+    </article>
+
+    <article class="build">
+      <div class="rv">
+        <div class="kicker"><span class="tag">Property-turnover contractor · Toronto</span><span class="tag role">Aug to Sep 2026 · app</span></div>
+        <h3>Quote Writer: a plain-words job description becomes a priced quote</h3>
+        <div class="story">
+          <p><b>Problem</b>A twelve-person multi-trade contractor writing every quote by hand, in a format that changed with whoever wrote it.</p>
+          <p><b>Build</b>An installable web app: type or paste the job in plain words, Gemini extracts the line items against the company's price book, the quote comes back priced and editable in seconds, exported to Word and PDF, searchable and duplicable. Shipped only once a guardrail corpus of real jobs passed 9 of 9.</p>
+        </div>
+        <div class="flow" aria-label="System flow"><span style="--i:0">Job in plain words</span><i>→</i><span style="--i:1">Gemini extraction</span><i>→</i><span style="--i:2">Price book</span><i>→</i><span style="--i:3">Editable quote</span><i>→</i><span style="--i:4">Word / PDF</span></div>
+        <p class="stackline">Next.js · Supabase · Gemini · Vercel · PWA</p>
+      </div>
+      <div class="ledger rv rv-d1" aria-label="Results ledger">
+        <div class="lh"><b>Ledger</b><span>build</span></div>
+        <div class="row"><span class="k">Signed to deployed</span><span class="v num"><span class="to">8 days</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Guardrail corpus</span><span class="v num"><span class="to">9 / 9</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Time to a priced quote</span><span class="v num"><span class="from">hours</span><span class="to">seconds</span></span><span class="track"><span class="fill" style="--w:3%"></span><span class="tick" style="--t:100%"></span></span></div>
+      </div>
+    </article>
+
+    <article class="build">
+      <div class="rv">
+        <div class="kicker"><span class="tag">Plumbing contractor · Toronto</span><span class="tag role">Sep 2026 · app</span></div>
+        <h3>Job Hub: work-order emails become jobs, invoices and revenue per client</h3>
+        <div class="story">
+          <p><b>Problem</b>Work orders arrive as emails from several property-management companies. Nothing tracked which were done, invoiced, or paid, or which management company was actually worth the time.</p>
+          <p><b>Build</b>Gemini parses each work-order email into a job; the app writes the invoice and shows money per management company. The parser was evaluated on real emails before launch: 25 of 25 assertions across six cases. Sold eight days after an inbound referral.</p>
+        </div>
+        <div class="flow" aria-label="System flow"><span style="--i:0">Work-order email</span><i>→</i><span style="--i:1">Gemini parser</span><i>→</i><span style="--i:2">Job list</span><i>→</i><span style="--i:3">Invoice</span><i>→</i><span style="--i:4">Revenue by client</span></div>
+        <p class="stackline">Next.js · Supabase · Gemini · Gmail API · Vercel</p>
+      </div>
+      <div class="ledger rv rv-d1" aria-label="Results ledger">
+        <div class="lh"><b>Ledger</b><span>at handover</span></div>
+        <div class="row"><span class="k">Parser evaluation</span><span class="v num"><span class="to">25 / 25</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Real jobs ingested</span><span class="v num"><span class="to">26</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Referral to signed</span><span class="v num"><span class="to">8 days</span></span><span class="track"><span class="fill"></span></span></div>
+      </div>
+    </article>
+
+    <article class="build">
+      <div class="rv">
+        <div class="kicker"><span class="tag">Short-term rentals · Puerto Vallarta</span><span class="tag role">2026 · built and operated</span></div>
+        <h3>Direct-booking site with a bilingual AI concierge and a guest CRM that finally had emails in it</h3>
+        <div class="story">
+          <p><b>Problem</b>Two rental properties paying platform commissions on every repeat guest, with 218 past guests on file and eight usable email addresses.</p>
+          <p><b>Build</b>A branded direct-booking site with a bilingual AI concierge, guest CRM, drip campaigns, city guide and admin panel. A sweep of 3,934 synced messages recovered 117 guest emails. A tap-to-send WhatsApp winter campaign went to 181 past guests with phones.</p>
+        </div>
+        <div class="flow" aria-label="System flow"><span style="--i:0">Booking platform messages</span><i>→</i><span style="--i:1">Sync + regex sweep</span><i>→</i><span style="--i:2">Guest CRM</span><i>→</i><span style="--i:3">Drip + WhatsApp campaigns</span><i>·</i><span style="--i:4">AI concierge (EN/ES)</span></div>
+        <p class="stackline">Next.js · Supabase · Stripe · WhatsApp · Vercel</p>
+      </div>
+      <div class="ledger rv rv-d1" aria-label="Results ledger">
+        <div class="lh"><b>Ledger</b><span>Aug 2026</span></div>
+        <div class="row"><span class="k">Guests with a real email</span><span class="v num"><span class="from">8</span><span class="to">107 of 218</span></span><span class="track"><span class="fill" style="--w:49%"></span><span class="tick" style="--t:4%"></span></span></div>
+        <div class="row"><span class="k">Emails recovered from messages</span><span class="v num"><span class="to">117 / 3,934</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Win-back campaign reach</span><span class="v num"><span class="to">181 guests</span></span><span class="track"><span class="fill" style="--w:83%"></span></span></div>
+      </div>
+    </article>
+
+    <article class="build">
+      <div class="rv">
+        <div class="kicker"><span class="tag">My own consultancy</span><span class="tag role">2026 · internal tooling</span></div>
+        <h3>An AI-native CRM and ops hub, built to run the practice itself</h3>
+        <div class="story">
+          <p><b>Problem</b>Outbound sales to Toronto trades and property managers from Cairo, with leads in Apollo, calls in a dialer, receipts in Gmail and nothing joined up.</p>
+          <p><b>Build</b>Customers, deals, projects, tasks, invoices and conversations in one app. Nightly Apollo sync into a two-tier lead model, dialer webhooks that retire dead numbers automatically, contact enrichment, a Gmail-to-Gemini receipt pipeline, an AI "chief of staff" morning briefing, a REST surface for agents, and a dial-window guard so nobody calls Ontario outside legal hours.</p>
+        </div>
+        <div class="flow" aria-label="System flow"><span style="--i:0">Apollo</span><i>→</i><span style="--i:1">Lead inbox</span><i>→</i><span style="--i:2">Dialer webhooks</span><i>→</i><span style="--i:3">Deals + tasks</span><i>·</i><span style="--i:4">Gmail</span><i>→</i><span style="--i:5">Gemini</span><i>→</i><span style="--i:6">Receipts</span></div>
+        <p class="stackline">Next.js 16 · TypeScript · Supabase · Drizzle · Gemini 2.5 · Apollo API · Stripe</p>
+      </div>
+      <div class="ledger rv rv-d1" aria-label="Results ledger">
+        <div class="lh"><b>Ledger</b><span>Sep 2026</span></div>
+        <div class="row"><span class="k">Leads under management</span><span class="v num"><span class="to">751</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Seats</span><span class="v num"><span class="to">5</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Webhook replay against production</span><span class="v num"><span class="to">4 / 4</span></span><span class="track"><span class="fill"></span></span></div>
+        <div class="row"><span class="k">Clients signed on it, five months</span><span class="v num"><span class="to">9</span></span><span class="track"><span class="fill"></span></span></div>
+      </div>
+    </article>
+
+    <div class="also">
+      <article class="rv"><p class="eyebrow">Analytics</p><h4>Search-demand study for a 95-suite rental development</h4><p>143 phrases across Canada and Toronto, live SERPs, into a 15-slide deck the developer used to choose a name and positioning.</p></article>
+      <article class="rv rv-d1"><p class="eyebrow">Sales tooling</p><h4>Cold-call coach</h4><p>An AI grader that scores every sales call against a twelve-file rubric: openers, objections, closes, benchmarks. Ranks the call, names the fix.</p></article>
+      <article class="rv rv-d2"><p class="eyebrow">Operating system</p><h4>How every engagement is run</h4><p>Kickoff templates, an append-only status log, a session handoff, and a verification ledger for every client message, enforced by shell hooks in Claude Code.</p></article>
+      <article class="rv rv-d3"><p class="eyebrow">For fun</p><h4>The Arcade</h4><p>A single-file retro-arcade microsite that teaches the cold-call playbook level by level. Because training decks don't get read.</p></article>
+    </div>
+  </section>
+
+  <section id="calls">
+    <div class="sec-head">
+      <div><div class="idx">02 · Listen</div><h2 class="rv">Two calls, as they happened</h2></div>
+      <p class="rv rv-d1">Real recordings from the brokerage line, July 2026, picked from a review of fifty. Names, phone numbers, emails, addresses and the brokerage name are bleeped in the audio and masked in the text. Press play; the transcript follows the voice.</p>
+    </div>
+    <div class="callgrid">
+      <div class="call rv" data-call="gibbs">
+        <div class="meta"><span>Tue 28 Jul 2026 · 16:25 ET · 87 s</span><span class="pill">lead captured</span><span class="pill">contact read back</span><span class="pill">agent closed the call</span></div>
+        <div class="player">
+          <button class="play" aria-label="Play call one"><svg viewBox="0 0 24 24" class="ic-play"><path d="M8 5v14l11-7z"/></svg><svg viewBox="0 0 24 24" class="ic-pause" hidden><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
+          <div class="wave"><canvas aria-label="Waveform, click to seek"></canvas><div class="time"><span class="cur num">0:00</span><span class="masked-key"><i></i>bleeped</span><span class="dur num">1:27</span></div></div>
+        </div>
+        <audio preload="metadata" src="audio/gibbs.m4a"></audio>
+        <ul class="turns"></ul>
+        <dl class="out">
+          <dt>caller type</dt><dd>prospective tenant, no agent (the firm keeps both sides)</dd>
+          <dt>reason</dt><dd>price, utilities, virtual showing on 1 or 2 Aug</dd>
+          <dt>captured</dt><dd class="good">callback number · email · property</dd>
+          <dt>judge</dt><dd class="good">areas for improvement: none</dd>
+        </dl>
+      </div>
+      <div class="call rv rv-d1" data-call="donmills">
+        <div class="meta"><span>Sun 26 Jul 2026 · 16:52 ET · 94 s</span><span class="pill">lead captured</span><span class="pill">routed to a named agent</span><span class="pill">misheard email caught</span></div>
+        <div class="player">
+          <button class="play" aria-label="Play call two"><svg viewBox="0 0 24 24" class="ic-play"><path d="M8 5v14l11-7z"/></svg><svg viewBox="0 0 24 24" class="ic-pause" hidden><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
+          <div class="wave"><canvas aria-label="Waveform, click to seek"></canvas><div class="time"><span class="cur num">0:00</span><span class="masked-key"><i></i>bleeped</span><span class="dur num">1:34</span></div></div>
+        </div>
+        <audio preload="metadata" src="audio/donmills.m4a"></audio>
+        <ul class="turns"></ul>
+        <dl class="out">
+          <dt>caller type</dt><dd>prospective tenant, no agent</dd>
+          <dt>routing</dt><dd>asked for a named agent; request captured for the team</dd>
+          <dt>captured</dt><dd class="good">full name · callback number · corrected email · property</dd>
+          <dt>note</dt><dd>the first 20 seconds have cross-talk; that class of fault is what the QA score tracks</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="sec-head">
+      <div><div class="idx">03 · Method</div><h2 class="rv">How I work</h2></div>
+      <p class="rv rv-d1">Business value first, then the process, then the data, and a number agreed before a line of code. A tool nobody adopts is worth nothing, so the people doing the work are in the room from day one.</p>
+    </div>
+    <div class="steps rv">
+      <div class="step"><div class="n">01</div><h3>Watch, then ask</h3><p>A week or two beside the team. Two questions to everyone: what wastes most of your time, and what should you be doing instead? Leadership gets the same questions separately; the answers rarely match, and both count.</p><pre>rule #1
+copy-paste is not part of anyone's workflow</pre></div>
+      <div class="step"><div class="n">02</div><h3>Pull the data</h3><p>CRM exports, call logs, inbox volumes, the spreadsheets themselves. There are always hints. The receptionist project began when the call log showed a third of calls arriving after hours and none answered.</p><pre>baseline-2026-05-13.json
+"captured_at": <b>"2026-05-13T15:33:18Z"</b>
+"llms_txt": 404 · "crawler": 403</pre></div>
+      <div class="step"><div class="n">03</div><h3>Cost it, rank it, agree the number</h3><p>Manual cost today against build, maintenance and API cost. The gap has to be smaller than the value. Then the owner and I agree what success looks like as a number, and what the dashboard will show.</p><pre>target      contact capture ≥ 80%
+baseline    after-hours answered 0%
+report      weekly, plain numbers</pre></div>
+      <div class="step"><div class="n">04</div><h3>Build, measure, keep the record</h3><p>Ship the highest-value item that can go live in weeks. Every automation gets its own metric and a status log that stands alone, so the next person (or the next session) knows exactly where things are.</p><pre>STATUS.md   newest entry on top
+HANDOFF.md  last write of a session
+ledger      claim · check · source · time</pre></div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head">
+      <div><div class="idx">04 · Stack</div><h2 class="rv">Tools</h2></div>
+      <p class="rv rv-d1">Chosen per job, not per habit. Most business automations need n8n, one LLM API and a database; the rest is discipline.</p>
+    </div>
+    <div class="stack rv">
+      <div><h3>Automation &amp; agents</h3><ul><li>n8n</li><li>Retell AI</li><li>ElevenLabs</li><li>Claude API</li><li>Claude Code</li><li>Gemini 2.5</li><li>OpenAI</li><li>Codex</li><li>MCP servers</li></ul></div>
+      <div><h3>Apps &amp; data</h3><ul><li>Next.js</li><li>TypeScript</li><li>Supabase / Postgres</li><li>Drizzle</li><li>Python</li><li>SQL</li><li>Vercel</li><li>GitHub Actions</li><li>Cloudflare</li></ul></div>
+      <div><h3>Analytics &amp; systems</h3><ul><li>GA4</li><li>Search Console API</li><li>DataForSEO</li><li>Ahrefs</li><li>Apollo</li><li>ClickUp</li><li>HubSpot</li><li>Stripe</li><li>Slack</li><li>Excel / Sheets models</li><li>CadQuery</li></ul></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="sec-head">
+      <div><div class="idx">05 · About</div><h2 class="rv">Analyst by training, builder by trade, seller by history</h2></div>
+      <p class="rv rv-d1"></p>
+    </div>
+    <div class="about">
+      <div class="rv">
+        <p>I have a Master's in AI and Business Analytics from Vlerick and a finance degree from IE, and I passed CFA Level I on the first attempt, which is why every build here ends in a number rather than a feeling. Before automation I sold: first go-to-market hire at a sales-AI startup, growing it from one user to 1,450 while running product. I understand what the people using the tool want to be doing instead.</p>
+        <p>Based in Cairo, EU citizen, and used to Toronto and US hours. I work in English, Arabic, French and Spanish.</p>
+      </div>
+      <div class="facts rv rv-d1">
+        <div><b>Email</b><span><a href="mailto:aboueitabe@gmail.com">aboueitabe@gmail.com</a></span></div>
+        <div><b>LinkedIn</b><span><a href="https://www.linkedin.com/in/hussein-abou-eita/">linkedin.com/in/hussein-abou-eita</a></span></div>
+        <div><b>Education</b><span>MSc AI &amp; Business Analytics, Vlerick · BBA Finance, IE University · CFA Level I</span></div>
+        <div><b>Languages</b><span>English, Arabic (native) · French, Spanish (fluent)</span></div>
+        <div><b>Hours</b><span>Available on Eastern and Central US time</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mono">Hussein Abou-Eita · 2026</span>
+    <span class="mono">Every figure above comes from the client's own data or the deployed system.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var R = function(t){ return '<span class="redact">' + t + '</span>'; };
+  var TURNS = {
+    gibbs: [
+      ['vera',0.26,3.88,'Hi, you\'ve reached ' + R('[brokerage]') + '. This is Vera, how can I help you today?'],
+      ['caller',5.59,10.57,'Hi. I\'m calling with regards to a rental property you have at ' + R('[address]') + '.'],
+      ['vera',12.06,14.39,'Are you a realtor or looking for yourself?'],
+      ['caller',15.44,16.56,'I\'m looking for myself.'],
+      ['vera',18.04,20.41,'Are you currently working with a real estate agent?'],
+      ['caller',21.78,22.02,'No.'],
+      ['vera',23.53,27.71,'What message would you like to leave for the team about ' + R('[address]') + '?'],
+      ['caller',29.50,41.05,'Wanted to confirm the rental price per month, what utilities are included, and I would like to schedule a virtual showing August first or August second.'],
+      ['vera',42.63,48.67,'I don\'t have that specific detail, the team can clarify when they call you back. What\'s the best number to reach you?'],
+      ['caller',50.16,53.73,R('[phone number]')],
+      ['vera',55.30,61.90,'Just to confirm, your phone number is ' + R('[phone number, read back]') + '. What\'s the best email for you?'],
+      ['caller',63.48,67.89,R('[email]')],
+      ['vera',69.70,80.66,'Just to confirm, your email is ' + R('[email, spelled back]') + '. Alright, I\'ll make sure the team gets your message. Is there anything else I can help you with?'],
+      ['caller',81.72,82.44,'No. Thank you.'],
+      ['vera',84.04,86.96,'Great, we\'ll be in touch as soon as possible. Have a good one.']
+    ],
+    donmills: [
+      ['vera',0.26,4.21,'Hi, you\'ve reached ' + R('[brokerage]') + '. This is Vera, how can I help you today?'],
+      ['caller',6.15,13.71,'Hi. Can I speak to ' + R('[agent name]') + '? It\'s regarding the ' + R('[address]') + ' property.'],
+      ['vera',15.34,17.11,'What message would you like to leave?'],
+      ['vera',18.28,19.72,'Are you a realtor or looking for yourself?'],
+      ['caller',19.64,25.83,'I would like to have a showing. No, I\'m a potential renter, and I want to have a showing.'],
+      ['vera',27.34,29.71,'Are you currently working with a real estate agent?'],
+      ['caller',30.20,37.77,'For this property, no. I\'m calling directly because I\'m interested to rent a house.'],
+      ['vera',39.47,41.09,'What\'s your first and last name?'],
+      ['caller',42.59,51.68,R('[name, spelled out]')],
+      ['vera',53.37,56.07,'Is the number you\'re calling from the best number to reach you?'],
+      ['caller',57.75,58.31,'Yes. Yes.'],
+      ['vera',59.94,61.52,'What\'s the best email for you?'],
+      ['caller',61.43,65.92,R('[email]')],
+      ['vera',67.47,73.46,'Let me read that back to confirm: ' + R('[email, spelled back with one letter missing]') + '. Is that correct?'],
+      ['caller',73.81,80.20,'No, no. ' + R('[email, spelled again]') + '.'],
+      ['vera',81.69,89.40,'Let me confirm: ' + R('[email, spelled back correctly]') + '. Is there anything else I can help you with?'],
+      ['caller',91.23,91.79,'No.'],
+      ['vera',91.80,93.90,'Great, we\'ll be in touch as soon as possible. Have a good one.']
+    ]
+  };
+  var MASKED = {"gibbs": {"masked": [[0.85, 2.06], [8.76, 10.41], [26.26, 27.29], [50.08, 53.81], [56.8, 60.45], [63.4, 66.19], [66.69, 67.97], [71.44, 76.47]], "duration": 87.0}, "donmills": {"masked": [[0.95, 2.25], [7.37, 8.01], [10.21, 13.63], [43.07, 43.71], [45.94, 48.16], [50.08, 51.76], [60.31, 62.07], [63.84, 66.0], [69.39, 72.61], [75.3, 78.26], [78.76, 80.28], [83.16, 87.48]], "duration": 93.9}};
+
+  /* reveal */
+  var rv = document.querySelectorAll('.rv, .stat, .ledger, .steps');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    rv.forEach(function(el){ io.observe(el); });
+  } else { rv.forEach(function(el){ el.classList.add('in'); }); }
+
+  /* count-up on the hero numbers (DOM already holds the final value) */
+  if (!reduce) {
+    document.querySelectorAll('.stat b[data-count]').forEach(function(el, i){
+      var target = parseFloat(el.getAttribute('data-count')); var suffix = el.getAttribute('data-suffix') || ''; var isInt = el.getAttribute('data-format') === 'int';
+      var t0 = null, dur = 1400, delay = 200 + i * 160;
+      function fmt(v){ var n = Math.round(v); return isInt ? n.toLocaleString('en-US') : String(n); }
+      function step(ts){ if (t0 === null) t0 = ts; var p = Math.min(1, (ts - t0 - delay) / dur); if (p < 0) { requestAnimationFrame(step); return; } var e = 1 - Math.pow(1 - p, 3); el.innerHTML = fmt(target * e) + (suffix ? '<small>' + suffix + '</small>' : ''); if (p < 1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  }
+
+  /* aurora */
+  var cv = document.getElementById('aurora');
+  if (cv && cv.getContext) {
+    var ctx = cv.getContext('2d'), W, H, t = 0;
+    var cs = getComputedStyle(document.documentElement);
+    function col(v){ return cs.getPropertyValue(v).trim(); }
+    function size(){ var r = cv.getBoundingClientRect(); W = cv.width = Math.max(300, Math.floor(r.width / 2)); H = cv.height = Math.max(200, Math.floor(r.height / 2)); }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      var blobs = [ [0.25 + 0.08*Math.sin(t*0.7), 0.35 + 0.06*Math.cos(t*0.5), 0.55, col('--aurora-a')], [0.72 + 0.07*Math.cos(t*0.6), 0.30 + 0.08*Math.sin(t*0.8), 0.5, col('--aurora-b')], [0.55 + 0.1*Math.sin(t*0.4), 0.75 + 0.05*Math.cos(t*0.9), 0.45, col('--aurora-c')] ];
+      blobs.forEach(function(b){ var g = ctx.createRadialGradient(b[0]*W, b[1]*H, 0, b[0]*W, b[1]*H, b[2]*W); g.addColorStop(0, b[3]); g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0,0,W,H); });
+      t += 0.012; if (!reduce) requestAnimationFrame(draw);
+    }
+    size(); draw(); window.addEventListener('resize', function(){ size(); if (reduce) draw(); });
+    if (window.matchMedia) { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){ cs = getComputedStyle(document.documentElement); if (reduce) draw(); }); }
+  }
+
+  /* players */
+  function fmtTime(s){ s = Math.max(0, Math.floor(s)); return Math.floor(s/60) + ':' + ('0' + (s % 60)).slice(-2); }
+  document.querySelectorAll('.call').forEach(function(card){
+    var key = card.getAttribute('data-call'); var turns = TURNS[key] || []; var masked = (MASKED[key] && MASKED[key].masked) || []; var duration = (MASKED[key] && MASKED[key].duration) || 0;
+    var audio = card.querySelector('audio'); var btn = card.querySelector('.play'); var canvas = card.querySelector('canvas'); var cur = card.querySelector('.cur'); var durEl = card.querySelector('.dur'); var list = card.querySelector('.turns');
+    var icPlay = btn.querySelector('.ic-play'), icPause = btn.querySelector('.ic-pause');
+    turns.sort(function(a,b){ return a[1]-b[1]; });
+    turns.forEach(function(tn, i){ var li = document.createElement('li'); li.className = tn[0]; li.setAttribute('data-i', i); li.innerHTML = '<b>' + (tn[0] === 'vera' ? 'Vera' : 'Caller') + '</b><span>' + tn[3] + '</span>'; li.addEventListener('click', function(){ audio.currentTime = tn[1]; if (audio.paused) audio.play(); }); list.appendChild(li); });
+    durEl.textContent = fmtTime(duration || 0);
+    var actx = null, analyser = null, data = null, connected = false;
+    var seed = key === 'gibbs' ? 7 : 3; var N = 72;
+    var staticBars = []; for (var i = 0; i < N; i++) { var v = 0.35 + 0.65 * Math.abs(Math.sin(i * 0.9 + seed) * Math.cos(i * 0.37 + seed * 1.3)); staticBars.push(v); }
+    function ensureAnalyser(){ if (connected) return; try { var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; actx = new AC(); var src = actx.createMediaElementSource(audio); analyser = actx.createAnalyser(); analyser.fftSize = 256; src.connect(analyser); analyser.connect(actx.destination); data = new Uint8Array(analyser.frequencyBinCount); connected = true; } catch (e) { connected = false; } }
+    var g = canvas.getContext('2d'); var dpr = Math.min(2, window.devicePixelRatio || 1);
+    function size(){ var r = canvas.getBoundingClientRect(); canvas.width = Math.floor(r.width * dpr); canvas.height = Math.floor(64 * dpr); }
+    function draw(){
+      var W = canvas.width, H = canvas.height; g.clearRect(0,0,W,H);
+      var cs2 = getComputedStyle(document.documentElement); var amber = cs2.getPropertyValue('--amber').trim(); var ink3 = cs2.getPropertyValue('--ink-3').trim(); var rule = cs2.getPropertyValue('--rule').trim();
+      var dur = audio.duration || duration || 1; var p = (audio.currentTime || 0) / dur;
+      /* masked spans as hatched strips along the bottom */
+      masked.forEach(function(m){ var x0 = m[0]/dur*W, x1 = m[1]/dur*W; g.save(); g.globalAlpha = 0.55; g.fillStyle = ink3; for (var x = x0; x < x1; x += 4*dpr) { g.fillRect(x, H - 6*dpr, 2*dpr, 6*dpr); } g.restore(); });
+      var live = null; if (connected && analyser && !audio.paused) { analyser.getByteFrequencyData(data); live = data; }
+      var gap = 2*dpr, bw = (W - gap*(N-1)) / N;
+      for (var i = 0; i < N; i++) {
+        var amp = staticBars[i];
+        if (live) { var idx = Math.floor(Math.pow(i / N, 1.6) * (live.length * 0.6)); amp = 0.15 + 0.85 * (live[idx] / 255); }
+        var h = Math.max(3*dpr, amp * (H - 12*dpr)); var x = i * (bw + gap); var y = (H - 8*dpr - h) / 2 + 2*dpr;
+        var done = (x + bw/2) / W <= p;
+        g.fillStyle = done ? amber : rule; g.beginPath(); var r = Math.min(bw/2, 2*dpr); g.roundRect ? g.roundRect(x, y, bw, h, r) : g.rect(x, y, bw, h); g.fill();
+      }
+      cur.textContent = fmtTime(audio.currentTime || 0);
+      /* transcript sync */
+      var tcur = audio.currentTime || 0, active = -1; for (var k = 0; k < turns.length; k++) { if (turns[k][1] <= tcur + 0.05) active = k; }
+      var lis = list.children; for (var k2 = 0; k2 < lis.length; k2++) { var on = (k2 === active && !audio.paused) || (k2 === active && tcur > 0); if (on !== lis[k2].classList.contains('on')) { lis[k2].classList.toggle('on', on); if (on) { var li = lis[k2]; var top = li.offsetTop - list.offsetTop - 60; list.scrollTo ? list.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' }) : (list.scrollTop = top); } } }
+      if (!audio.paused) requestAnimationFrame(draw);
+    }
+    size(); draw();
+    window.addEventListener('resize', function(){ size(); draw(); });
+    btn.addEventListener('click', function(){ if (audio.paused) { ensureAnalyser(); if (actx && actx.state === 'suspended') actx.resume(); document.querySelectorAll('.call audio').forEach(function(a){ if (a !== audio) a.pause(); }); audio.play(); } else { audio.pause(); } });
+    canvas.addEventListener('click', function(ev){ var r = canvas.getBoundingClientRect(); var frac = (ev.clientX - r.left) / r.width; var dur = audio.duration || duration; if (dur) { audio.currentTime = Math.max(0, Math.min(dur, frac * dur)); draw(); } });
+    audio.addEventListener('play', function(){ btn.classList.add('on'); icPlay.hidden = true; icPause.hidden = false; requestAnimationFrame(draw); });
+    audio.addEventListener('pause', function(){ btn.classList.remove('on'); icPlay.hidden = false; icPause.hidden = true; draw(); });
+    audio.addEventListener('ended', function(){ audio.currentTime = 0; draw(); });
+    audio.addEventListener('loadedmetadata', function(){ durEl.textContent = fmtTime(audio.duration); draw(); });
+    audio.addEventListener('timeupdate', function(){ if (audio.paused) draw(); });
+  });
+})();
+</script>
+
+</body>
+</html>
