@@ -82,7 +82,7 @@
   .h2 p { flex-basis: 100%; color: var(--ink-2); font-size: 17px; max-width: 60ch; margin: 6px 0 0; }
 
   /* radio */
-  .radio { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .radio { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; max-width: 760px; }
   .ch { min-width: 0; background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 20px 22px 22px; display: grid; gap: 16px; position: relative; overflow: hidden; }
   .ch::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c); box-shadow: 0 0 20px var(--c); }
   .ch .meta { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
@@ -129,11 +129,6 @@
   .tile h3 { font-family: var(--cond); font-weight: 700; text-transform: uppercase; font-size: 20px; letter-spacing: .02em; margin: 0 0 6px; }
   .tile p { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.45; }
 
-  /* strings */
-  .strings { position: relative; }
-  #strings { width: 100%; height: 260px; display: block; touch-action: none; cursor: crosshair; border: 1px solid var(--rule); border-radius: 6px; background: linear-gradient(180deg, var(--panel), var(--bg-2)); }
-  .strings .cap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 12px; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
-
   /* contact */
   .contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: end; }
   .contact h2 { font-family: var(--cond); font-weight: 900; text-transform: uppercase; font-size: clamp(3rem, 8vw, 7rem); line-height: .9; margin: 0; }
@@ -150,7 +145,6 @@
   @media (max-width: 900px) {
     .hero { padding-block: 60px 48px; }
     .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-    .radio { grid-template-columns: minmax(0, 1fr); }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .contact { grid-template-columns: minmax(0, 1fr); gap: 26px; }
     section { padding-block: 64px; }
@@ -218,7 +212,7 @@
   </section>
 
   <section id="radio">
-    <div class="h2"><span class="lbl">02 · Team radio</span><h2 class="rv">Two real calls</h2><p class="rv">Vera, an agentic voice workflow I built from scratch (Retell AI, n8n, CRM, Slack), on the line with two strangers. Every call is scored against a versioned rubric; these two scored clean. Names, numbers, emails and addresses are bleeped. Press play and read along.</p></div>
+    <div class="h2"><span class="lbl">02 · Team radio</span><h2 class="rv">One real call</h2><p class="rv">Vera, an agentic voice workflow I built from scratch (Retell AI, n8n, CRM, Slack), on the line with a stranger. Every call is scored against a versioned rubric; this one scored clean. Names, numbers, emails and addresses are bleeped. Press play and read along.</p></div>
     <div class="radio">
       <div class="ch rv" data-call="gibbs" style="--c: var(--purple)">
         <div class="meta"><span><b>CH 1</b> · Tue 28 Jul · 87 s</span><span>lead captured · read back · clean close</span></div>
@@ -229,16 +223,6 @@
         <audio preload="metadata" src="audio/gibbs.m4a"></audio>
         <div class="sub-line"><span class="who">Radio</span><div class="txt">Press play.</div></div>
         <div class="foot"><span>prospective tenant, no agent</span><span>phone + email captured</span><span>judge: nothing to improve</span></div>
-      </div>
-      <div class="ch rv" data-call="donmills" style="--c: var(--green)">
-        <div class="meta"><span><b>CH 2</b> · Sun 26 Jul · 94 s</span><span>lead captured · misheard email caught</span></div>
-        <div class="player">
-          <button class="play" aria-label="Play call two"><svg viewBox="0 0 24 24" class="ic-play"><path d="M8 5v14l11-7z"/></svg><svg viewBox="0 0 24 24" class="ic-pause" hidden><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
-          <div class="wave"><canvas aria-label="Waveform, click to seek"></canvas><div class="tl"><span class="cur num">0:00</span><span>▮▮ bleeped</span><span class="dur num">1:34</span></div></div>
-        </div>
-        <audio preload="metadata" src="audio/donmills.m4a"></audio>
-        <div class="sub-line"><span class="who">Radio</span><div class="txt">Press play.</div></div>
-        <div class="foot"><span>asked for a named agent</span><span>name, phone, corrected email</span><span>cross-talk in the first 20 s</span></div>
       </div>
     </div>
   </section>
@@ -255,11 +239,6 @@
     </div>
   </section>
 
-  <section id="offclock" class="strings">
-    <div class="h2"><span class="lbl">04 · Off the clock</span><h2 class="rv">Pluck a string</h2></div>
-    <canvas id="strings" aria-label="Six guitar strings you can pluck"></canvas>
-    <div class="cap"><span>Guitar most evenings</span><span>Formula 1 every race weekend</span><span>Cairo, Egypt</span></div>
-  </section>
 
   <section id="contact">
     <div class="contact">
@@ -298,28 +277,8 @@
       ['caller',81.72,'No. Thank you.'],
       ['vera',84.04,'Great, we\'ll be in touch as soon as possible. Have a good one.']
     ],
-    donmills: [
-      ['vera',0.26,'Hi, you\'ve reached ' + R('brokerage') + '. This is Vera, how can I help you today?'],
-      ['caller',6.15,'Hi. Can I speak to ' + R('agent name') + '? It\'s regarding the ' + R('address') + ' property.'],
-      ['vera',15.34,'What message would you like to leave?'],
-      ['vera',18.28,'Are you a realtor or looking for yourself?'],
-      ['caller',19.64,'I would like to have a showing. No, I\'m a potential renter, and I want to have a showing.'],
-      ['vera',27.34,'Are you currently working with a real estate agent?'],
-      ['caller',30.20,'For this property, no. I\'m calling directly because I\'m interested to rent a house.'],
-      ['vera',39.47,'What\'s your first and last name?'],
-      ['caller',42.59,R('name, spelled out')],
-      ['vera',53.37,'Is the number you\'re calling from the best number to reach you?'],
-      ['caller',57.75,'Yes. Yes.'],
-      ['vera',59.94,'What\'s the best email for you?'],
-      ['caller',61.43,R('email')],
-      ['vera',67.47,'Let me read that back to confirm: ' + R('one letter missing') + '. Is that correct?'],
-      ['caller',73.81,'No, no. ' + R('email, spelled again') + '.'],
-      ['vera',81.69,'Let me confirm: ' + R('spelled back correctly') + '. Is there anything else I can help you with?'],
-      ['caller',91.23,'No.'],
-      ['vera',91.80,'Great, we\'ll be in touch as soon as possible. Have a good one.']
-    ]
   };
-  var MASKED = {"gibbs": {"masked": [[0.85, 2.06], [8.76, 10.41], [26.26, 27.29], [50.08, 53.81], [56.8, 60.45], [63.4, 66.19], [66.69, 67.97], [71.44, 76.47]], "duration": 87.0}, "donmills": {"masked": [[0.95, 2.25], [7.37, 8.01], [10.21, 13.63], [43.07, 43.71], [45.94, 48.16], [50.08, 51.76], [60.31, 62.07], [63.84, 66.0], [69.39, 72.61], [75.3, 78.26], [78.76, 80.28], [83.16, 87.48]], "duration": 93.9}};
+  var MASKED = {"gibbs": {"masked": [[0.85, 2.06], [8.76, 10.41], [26.26, 27.29], [50.08, 53.81], [56.8, 60.45], [63.4, 66.19], [66.69, 67.97], [71.44, 76.47]], "duration": 87.0}};
   var css = getComputedStyle(document.documentElement); function tok(v){ return css.getPropertyValue(v).trim(); }
 
   /* reveal */
@@ -377,25 +336,6 @@
     audio.addEventListener('loadedmetadata', function(){ durEl.textContent = fmt(audio.duration); draw(); });
   });
 
-  /* guitar strings */
-  (function(){ var c = document.getElementById('strings'); if (!c) return; var g = c.getContext('2d'), W, H, dpr = Math.min(2, window.devicePixelRatio||1);
-    var notes = [82.41, 110.0, 146.83, 196.0, 246.94, 329.63], names = ['E','A','D','G','B','e'], S = notes.map(function(f, i){ return { f: f, amp: 0, ph: 0, w: 4.2 - i*0.55 }; }), actx = null, last = -1;
-    function size(){ var r = c.getBoundingClientRect(); W = c.width = Math.floor(r.width*dpr); H = c.height = Math.floor(r.height*dpr); }
-    function yOf(i){ return H * (0.16 + i * 0.136); }
-    function draw(){ g.clearRect(0,0,W,H);
-      S.forEach(function(s, i){ var y = yOf(i); g.beginPath(); var segs = 60; for (var k = 0; k <= segs; k++) { var x = k/segs*W; var env = Math.sin(Math.PI*k/segs); var off = s.amp * env * Math.sin(s.ph + k*0.6) * 14*dpr; if (k === 0) g.moveTo(x, y+off); else g.lineTo(x, y+off); } g.lineWidth = s.w*dpr*0.9; g.strokeStyle = s.amp > 0.02 ? '#F0B429' : 'rgba(245,239,230,.55)'; g.shadowColor = s.amp > 0.02 ? 'rgba(240,180,41,.8)' : 'transparent'; g.shadowBlur = s.amp*24*dpr; g.stroke(); g.shadowBlur = 0;
-        g.fillStyle = 'rgba(245,239,230,.35)'; g.font = (11*dpr) + 'px JetBrains Mono, monospace'; g.fillText(names[i], 14*dpr, y - 8*dpr);
-        s.ph += 0.9; s.amp *= 0.955; });
-      g.fillStyle = 'rgba(240,180,41,.9)'; g.fillRect(0, 0, 3*dpr, H); /* nut */
-      if (S.some(function(s){ return s.amp > 0.005; }) && !reduce) requestAnimationFrame(draw); }
-    function pluck(i, vel){ var s = S[i]; s.amp = Math.min(1, 0.6 + vel); s.ph = 0; draw();
-      try { var AC = window.AudioContext || window.webkitAudioContext; if (!actx) actx = new AC(); if (actx.state === 'suspended') actx.resume(); var t = actx.currentTime; var o = actx.createOscillator(), o2 = actx.createOscillator(), gn = actx.createGain(), flt = actx.createBiquadFilter(); o.type = 'triangle'; o2.type = 'sine'; o.frequency.value = s.f; o2.frequency.value = s.f*2.001; flt.type = 'lowpass'; flt.frequency.setValueAtTime(2600, t); flt.frequency.exponentialRampToValueAtTime(500, t+1.6); gn.gain.setValueAtTime(0.0001, t); gn.gain.exponentialRampToValueAtTime(0.22, t+0.006); gn.gain.exponentialRampToValueAtTime(0.0001, t+1.9); o.connect(flt); o2.connect(flt); flt.connect(gn); gn.connect(actx.destination); o.start(t); o2.start(t); o.stop(t+2); o2.stop(t+2); } catch (e) {} }
-    function hit(e){ var r = c.getBoundingClientRect(); var y = (e.clientY - r.top) * dpr; var best = -1, bd = 1e9; S.forEach(function(s, i){ var d = Math.abs(yOf(i) - y); if (d < bd) { bd = d; best = i; } }); return bd < 14*dpr ? best : -1; }
-    c.addEventListener('pointermove', function(e){ var i = hit(e); if (i !== last) { if (i >= 0 && (e.pressure > 0 || e.pointerType === 'mouse')) pluck(i, 0.3); last = i; } });
-    c.addEventListener('pointerdown', function(e){ var i = hit(e); if (i >= 0) pluck(i, 0.4); last = i; });
-    c.addEventListener('pointerleave', function(){ last = -1; });
-    size(); draw(); window.addEventListener('resize', function(){ size(); draw(); });
-  })();
 })();
 </script>
 
